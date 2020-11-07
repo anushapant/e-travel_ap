@@ -1,5 +1,6 @@
 {% load static %}
 
+<!-- We'll delete this later -->
 <!DOCTYPE HTML>
 <!--
 	Traveler by freehtml5.co
@@ -10,7 +11,7 @@
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Traveler</title>
+	<title>Traveler &mdash; Free Website Template, Free HTML5 Template by FreeHTML5.co</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
 	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
@@ -47,6 +48,10 @@
 	<!-- Owl Carousel  -->
 	<link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
 	<link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+
+	<link rel="stylesheet" href="{% static 'css/superfish.css' %}">
+	<link rel="stylesheet" href="{% static 'css/cs-select.css' %}">
+	<link rel="stylesheet" href="{% static 'css/cs-skin-border.css' %}">
 
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -100,7 +105,7 @@
 		</div>
 	</nav>
 
-	<header id="gtco-header" class="gtco-cover gtco-cover-md" role="banner" >
+	<header id="gtco-header" class="gtco-cover gtco-cover-md" role="banner" style="background-image: url(images/img_bg_2.jpg)">
 		<div class="overlay"></div>
 		<div class="gtco-container">
 			<div class="row">
@@ -111,7 +116,7 @@
 						<div class="col-md-7 mt-text animate-box" data-animate-effect="fadeInUp">
 							<h1>Planing Trip To Anywhere in The World?</h1>
 						</div>
-						<div class="col-md-4 col-md-push-1 animate-box" data-animate-effect="fadeInRight">
+						<div class="col-sm-5 col-md-5 animate-box" data-animate-effect="fadeInRight">
 							<div class="form-wrap">
 								<div class="tab">
 
@@ -119,7 +124,76 @@
 										<div class="tab-content-inner active" data-content="signup">
 											<h3>Book Your Trip</h3>
 											<form action="#">
-												<div class="row form-group">
+											<div class="row form-group">
+											<div class="col-xxs-12 col-xs-6 mt">
+												<div class=" input-field">
+													<label for="from-place">From:</label>
+													<input type="text" class="form-control" id="from-place" placeholder="Los Angeles, USA"/>
+												</div>
+											</div>
+											<div class="col-xxs-12 col-xs-6 mt">
+												<div class="input-field">
+													<label for="to-place">To:</label>
+													<input type="text" class="form-control" id="to-place" placeholder="Tokyo, Japan"/>
+												</div>
+											</div>
+
+
+												<div class="col-xxs-12 col-xs-6 mt alternate">
+												<div class="input-field">
+													<label >Departure:</label>
+													<input type="text" class="form-control" id="date-start" placeholder="mm/dd/yyyy"/>
+												</div>
+											</div>
+												<div class="col-xxs-12 col-xs-6 mt alternate">
+												<div class="input-field">
+													<label >Departure:</label>
+													<input type="text" class="form-control datepicker" id="date-start" placeholder="mm/dd/yyyy"/>
+												</div>
+											</div>
+
+											<div class="col-sm-12 mt">
+												<section>
+													<label for="class">Class:</label>
+													<select class="cs-select cs-skin-border">
+														<option value="" disabled selected>Economy</option>
+														<option value="economy">Economy</option>
+														<option value="first">First</option>
+														<option value="business">Business</option>
+													</select>
+												</section>
+											</div>
+											<div class="col-xxs-12 col-xs-6 mt">
+												<section>
+													<label for="class">Adult:</label>
+													<select class="cs-select cs-skin-border">
+														<option value="" disabled selected>1</option>
+														<option value="1">1</option>
+														<option value="2">2</option>
+														<option value="3">3</option>
+														<option value="4">4</option>
+													</select>
+												</section>
+											</div>
+											<div class="col-xxs-12 col-xs-6 mt">
+												<section>
+													<label for="class">Children:</label>
+													<select class="cs-select cs-skin-border">
+														<option value="" disabled selected>1</option>
+														<option value="1">1</option>
+														<option value="2">2</option>
+														<option value="3">3</option>
+														<option value="4">4</option>
+													</select>
+												</section>
+											</div>
+											<div class="col-xs-12">
+												<input type="submit" class="btn btn-primary btn-block" value="Search Flight">
+											</div>
+										</div>
+									 </div>
+
+										<div class="row form-group">
 													<div class="col-md-12">
 														<label for="fullname">Your Name</label>
 														<input type="text" id="fullname" class="form-control">
@@ -168,13 +242,14 @@
 								</div>
 							</div>
 						</div>
-					</div>
 
+				</div>
 
 				</div>
 			</div>
 		</div>
 	</header>
+
 
 	<div class="gtco-section">
 		<div class="gtco-container">
@@ -487,6 +562,10 @@
 	<script src="{% static 'js/owl.carousel.min.js' %}"></script>
 	<!-- countTo -->
 	<script src="{% static 'js/jquery.countTo.js' %}"></script>
+	<script src="{% static 'js/sticky.js' %}"></script>
+	<script src="{% static 'js/hoverIntent.js' %}"></script>
+	<script src="{% static 'js/superfish.js' %}"></script>
+
 
 	<!-- Stellar Parallax -->
 	<script src="{% static 'js/jquery.stellar.min.js' %}"></script>
@@ -504,3 +583,4 @@
 
 	</body>
 </html>
+

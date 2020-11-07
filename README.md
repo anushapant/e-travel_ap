@@ -14,5 +14,6 @@ Steps:
 5. We have created a dummy user, with username:user and password:user1234. However, you can create a new account as well.
 
 # 
+All images in this website have been taken from https://unsplash.com/ .
 
 In the process of making this project, we included the following templates:
