@@ -1,6 +1,5 @@
 {% load static %}
 
-<!-- We'll delete this later -->
 <!DOCTYPE HTML>
 <!--
 	Traveler by freehtml5.co
@@ -49,15 +48,11 @@
 	<link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
 	<link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
 
-	<link rel="stylesheet" href="{% static 'css/superfish.css' %}">
-	<link rel="stylesheet" href="{% static 'css/cs-select.css' %}">
-	<link rel="stylesheet" href="{% static 'css/cs-skin-border.css' %}">
-
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-	<!-- Modernizr JS -->
-	<script src="{% static 'js/modernizr-2.6.2.min.js ' %}"></script>
+	<!-- Modernizr JS
+	<script src="{% static 'js/modernizr-2.6.2.min.js ' %}"></script> -->
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
 	<script src="{% static 'js/respond.min.js' %}"></script>
@@ -66,7 +61,6 @@
 	</head>
 	<body>
 
-	<div class="gtco-loader"></div>
 
 	<div id="page">
 
@@ -105,15 +99,15 @@
 		</div>
 	</nav>
 <!--<img src="{% static 'images/home_flight.jpg'%}" width="1700" class="set-bg"	> -->
-	<header id="gtco-header" class="gtco-cover gtco-cover-md" role="banner" style="background-image: url(images/img_bg_2.jpg)">
+	<header id="gtco-header" class="gtco-cover gtco-cover-md" role="banner" style="background-image: url(/static/images/home_flight.jpg)">
 		<div class="gtco-container">
 			<div class="row">
-				<div class="col-md-12 col-md-offset-0 text-center">
+				<div class="col-md-12 col-md-offset-0 text-left">
 
 
 					<div class="row row-mt-15em">
 						<div class="col-md-7 mt-text animate-box" data-animate-effect="fadeInUp">
-							<h1>Planing Trip To Anywhere in The World?</h1>
+							<h1><b>Planning On Going Anywhere Across The Globe?</b></h1>
 						</div>
 						<div class="col-sm-5 col-md-4 animate-box" data-animate-effect="fadeInRight">
 							<div class="form-wrap">
@@ -124,13 +118,13 @@
 											<h3>Book Your Trip</h3>
 											<form action="#">
 											<div class="row form-group">
-											<div class="col-xxs-12 col-xs-6 mt">
+											<div class="col-xxs-12 col-xs-12 mt">
 												<div class=" input-field">
 													<label for="from-place">From:</label>
 													<input type="text" class="form-control" id="from-place" placeholder="Los Angeles, USA"/>
 												</div>
 											</div>
-											<div class="col-xxs-12 col-xs-6 mt">
+											<div class="col-xxs-12 col-xs-12 mt">
 												<div class="input-field">
 													<label for="to-place">To:</label>
 													<input type="text" class="form-control" id="to-place" placeholder="Tokyo, Japan"/>
@@ -138,7 +132,7 @@
 											</div>
 
 
-												<div class="col-xxs-12 col-xs-6 mt alternate">
+												<div class="col-xxs-12 col-xs-12 mt alternate">
 												<div class="input-field">
 													<label >Date of Departure:</label>
 													<input type="text" class="form-control" id="date-start" placeholder="mm/dd/yyyy"/>
@@ -246,10 +240,10 @@
 					</a>
 				</div>
 				<div class="col-lg-4 col-md-4 col-sm-6">
-					<a href="images/img_3.jpg" class="fh5co-card-item image-popup">
+					<a href="{% static 'images/img_3.jpg' %}" class="fh5co-card-item image-popup">
 						<figure>
 							<div class="overlay"><i class="ti-plus"></i></div>
-							<img src="images/img_3.jpg" alt="Image" class="img-responsive">
+							<img src="{% static 'images/img_3.jpg' %}" alt="Image" class="img-responsive">
 						</figure>
 						<div class="fh5co-text">
 							<h2>Paris, France</h2>
@@ -261,10 +255,10 @@
 
 
 				<div class="col-lg-4 col-md-4 col-sm-6">
-					<a href="images/img_4.jpg" class="fh5co-card-item image-popup">
+					<a href="{% static 'images/img_4.jpg' %}" class="fh5co-card-item image-popup">
 						<figure>
 							<div class="overlay"><i class="ti-plus"></i></div>
-							<img src="images/img_4.jpg" alt="Image" class="img-responsive">
+							<img src="{% static 'images/img_4.jpg' %}" alt="Image" class="img-responsive">
 						</figure>
 						<div class="fh5co-text">
 							<h2>Sydney, Australia</h2>
@@ -275,10 +269,10 @@
 				</div>
 
 				<div class="col-lg-4 col-md-4 col-sm-6">
-					<a href="images/img_5.jpg" class="fh5co-card-item image-popup">
+					<a href="{% static 'images/img_5.jpg' %}" class="fh5co-card-item image-popup">
 						<figure>
 							<div class="overlay"><i class="ti-plus"></i></div>
-							<img src="images/img_5.jpg" alt="Image" class="img-responsive">
+							<img src="{% static 'images/img_5.jpg' %}" alt="Image" class="img-responsive">
 						</figure>
 						<div class="fh5co-text">
 							<h2>Greece, Europe</h2>
@@ -289,10 +283,10 @@
 				</div>
 
 				<div class="col-lg-4 col-md-4 col-sm-6">
-					<a href="images/img_6.jpg" class="fh5co-card-item image-popup">
+					<a href="{% static 'images/img_6.jpg' %}" class="fh5co-card-item image-popup">
 						<figure>
 							<div class="overlay"><i class="ti-plus"></i></div>
-							<img src="images/img_6.jpg" alt="Image" class="img-responsive">
+							<img src="{% static 'images/img_6.jpg' %}" alt="Image" class="img-responsive">
 						</figure>
 						<div class="fh5co-text">
 							<h2>Spain, Europe</h2>
@@ -349,12 +343,12 @@
 	</div>
 
 
-	<div class="gtco-cover gtco-cover-sm" style="background-image: url(images/img_bg_1.jpg)"  data-stellar-background-ratio="0.5">
+	<div class="gtco-cover gtco-cover-sm" style="background-image: url(/static/images/home-2.jpg)">
 		<div class="overlay"></div>
 		<div class="gtco-container text-center">
 			<div class="display-t">
 				<div class="display-tc">
-					<h1>We have high quality services that you will surely love!</h1>
+					<h1>We provide high quality services which you are bound to love!</h1>
 				</div>
 			</div>
 		</div>
