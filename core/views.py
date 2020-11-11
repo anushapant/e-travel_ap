@@ -1,6 +1,12 @@
 from django.shortcuts import render
+from .models import FlightTicket
 
-# Create your views here.
+def ticket_list(request):           #used instead of item_list
+    context={
+        'tickets': FlightTicket.objects.all()
+    }
+    return render(request, "ticket_list.html", context)
+
 
 def home_v(request):
     return render(request, "index.html")
