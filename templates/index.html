@@ -102,6 +102,7 @@
 
 			</div>
 		</nav>
+
 		<!--<img src="{% static 'images/home_flight.jpg'%}" width="1700" class="set-bg"	> -->
 		<header id="gtco-header" class="gtco-cover gtco-cover-md" role="banner"
 			style="background-image: url(/static/images/home_flight.jpg)">
@@ -212,6 +213,19 @@
 	</div>
 	</header>
 
+
+	{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+    </ul>
+    {% endif %}
 
 	<div class="gtco-section">
 		<div class="gtco-container">
