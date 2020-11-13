@@ -21,4 +21,4 @@ def contact(request):
     return render(request, "contact.html")
 
 def flights(request):
-    return render(request, "flights.html")
+    return render(request, "flights_results.html")
