@@ -1,5 +1,5 @@
 from django.urls import path 
-from .views import home_v, destination, pricing, contact, ticket_list, flights
+from .views import home_v, destination, pricing, contact, ticket_list, flights, seats
 
 app_name = 'core'
 
@@ -10,5 +10,6 @@ urlpatterns= [
     path('pricing.html', pricing, name='pricing'),
     path('contact.html', contact, name='contact'),
     path('ticket_list.html', ticket_list, name='ticket-list'),
-    path('flights_results.html', flights, name='flights')
+    path('flights_results.html', flights, name='flights'),
+    path('seats.html', seats, name='seats')
 ]

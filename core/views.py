@@ -22,3 +22,6 @@ def contact(request):
 
 def flights(request):
     return render(request, "flights_results.html")
+
+def seats(request):
+    return render(request, "seats.html")
