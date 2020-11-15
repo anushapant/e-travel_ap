@@ -1,5 +1,12 @@
 from django.shortcuts import render
-from .models import FlightTicket
+from django.views.generic import ListView, DetailView, View
+from .models import FlightTicket, Flight_Booking_List, Transactions
+from django.utils import timezone
+from django.contrib import messages
+from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 
 def ticket_list(request):           #used instead of item_list
     context={
@@ -21,7 +28,10 @@ def contact(request):
     return render(request, "contact.html")
 
 def flights(request):
-    return render(request, "flights_results.html")
+    context = {
+        'object_list': FlightTicket.objects.all()
+    }
+    return render(request, "flights_results.html", context)
 
 def seats(request):
     return render(request, "seats.html")

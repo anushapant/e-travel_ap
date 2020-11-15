@@ -3,22 +3,32 @@ from django.db import models
 
 # Create your models here.
 
-class FlightTicket(models.Model):                           #used instead of Item 
-    title = models.CharField(max_length = 100)
-    price = models.FloatField()                             
+class FlightTicket(models.Model):
+    airline = models.CharField(max_length = 100,blank=True, null=True)
+    flight_no = models.CharField(max_length = 10,blank=True, null=True)
+    start = models.CharField(max_length = 100, blank=True, null=True)
+    destination = models.CharField(max_length = 100, blank=True, null=True)
+    start_time = models.TimeField(blank=True, null=True)
+    arrival_time = models.TimeField(blank=True, null=True)
+    number_seats = models.IntegerField(default=26)
+    number_seats_available = models.IntegerField(default=26)
+    price = models.FloatField()
 
     def __str__(self):
-        return self.title
+        return self.flight_no
 
-class FlightBooked(models.Model):                           #used instead of OrderItem
-    ticket = models.ForeignKey(FlightTicket, on_delete=models.CASCADE)  #used instead of item 
+class Flight_Booking_List(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    ticket = models.ForeignKey(FlightTicket, on_delete=models.CASCADE)
+    booked = models.BooleanField(default=False)
+    quantity = models.IntegerField(default=1)
 
     def __str__(self):
-        return self.title
+        return self.ticket.flight_no
 
-class Transactions(models.Model):                           #used instead of Order  
+class Transactions(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)    
-    tickets = models.ManyToManyField(FlightBooked)          #used instead of items 
+    tickets = models.ManyToManyField(Flight_Booking_List)          #used instead of items
     booked_date = models.DateTimeField()                    #used instead of ordered_date
     booked = models.BooleanField(default=False)             #used instead of ordered 
 

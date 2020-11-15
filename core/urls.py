@@ -10,6 +10,6 @@ urlpatterns= [
     path('pricing.html', pricing, name='pricing'),
     path('contact.html', contact, name='contact'),
     path('ticket_list.html', ticket_list, name='ticket-list'),
-    path('flights_results.html', flights, name='flights'),
+    path('flights_results.html', flights , name='flights'),
     path('seats.html', seats, name='seats')
 ]
