@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, View
 from .models import FlightTicket, Flight_Booking_List, Transactions
 from django.utils import timezone
@@ -35,3 +35,7 @@ def flights(request):
 
 def seats(request):
     return render(request, "seats.html")
+
+class flight_details_V(DetailView):
+    model = FlightTicket
+    template_name = "flight_details.html"

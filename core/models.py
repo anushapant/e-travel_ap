@@ -1,5 +1,6 @@
 from django.conf import settings 
 from django.db import models
+from django.shortcuts import reverse
 
 # Create your models here.
 
@@ -13,9 +14,15 @@ class FlightTicket(models.Model):
     number_seats = models.IntegerField(default=26)
     number_seats_available = models.IntegerField(default=26)
     price = models.FloatField()
+    slug = models.SlugField(blank=True, null=True)
 
     def __str__(self):
         return self.flight_no
+
+    def get_abs_url(self):
+        return reverse("core:flight_details", kwargs={
+            'slug': self.slug
+        })
 
 class Flight_Booking_List(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)

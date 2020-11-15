@@ -1738,6 +1738,12 @@ form label {
   -o-transition: 0.5s;
   transition: 0.5s;
 }
+.fh5co-card-item .fh5co-text a {
+  color: #000;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
 .fh5co-card-item .fh5co-text span.btn {
   color: #fff !important;
   opacity: 1;
