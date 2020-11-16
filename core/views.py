@@ -32,9 +32,11 @@ def flights(request):
         from_place = request.GET.get('from-place')
         to_place = request.GET.get('to-place')
         start_date = request.GET.get('start_date')
-
-        if from_place is not None and to_place is not None and start_date is not None:
-            lookups = Q(start__icontains=from_place , destination__icontains=to_place, date=start_date)
+        adults = request.GET.get('adults')
+        children = request.GET.get('children')
+        seats_required = int(adults) + int(children)
+        if from_place is not None and to_place is not None and start_date is not None and seats_required is not None:
+            lookups = Q(start__icontains=from_place, destination__icontains=to_place, date=start_date, number_seats_available__gte = seats_required   )
 
             results = FlightTicket.objects.filter(lookups)
 
