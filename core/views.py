@@ -28,10 +28,26 @@ def contact(request):
     return render(request, "contact.html")
 
 def flights(request):
-    context = {
-        'object_list': FlightTicket.objects.all()
-    }
-    return render(request, "flights_results.html", context)
+    if request.method == 'GET':
+        from_place = request.GET.get('from-place')
+        to_place = request.GET.get('to-place')
+        start_date = request.GET.get('start_date')
+
+        if from_place is not None and to_place is not None and start_date is not None:
+            lookups = Q(start__icontains=from_place , destination__icontains=to_place, date=start_date)
+
+            results = FlightTicket.objects.filter(lookups)
+
+            context = {'object_list': results}
+
+            return render(request, 'flights_results.html', context)
+
+        else:
+            return render(request, 'flights_results.html')
+
+    else:
+        return render(request, 'flights_results.html')
+
 
 def seats(request):
     return render(request, "seats.html")

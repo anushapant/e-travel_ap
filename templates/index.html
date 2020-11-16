@@ -124,33 +124,41 @@
 										<div class="tab-content">
 											<div role="tabpanel" class="tab-content-inner active" id="flights">
 												<h3>Book Your Flight</h3>
-												<form action="#">
+												<form action="{% url 'core:flights' %}" method="GET">
 													<div class="row form-group">
 														<div class="col-xxs-12 col-xs-12 mt">
 															<div class=" input-field">
 																<label for="from-place">From:</label>
-																<input type="text" class="form-control" id="from-place"
+																<input type="text" class="form-control" id="from-place" name="from-place"
 																	placeholder="Los Angeles, USA" />
 															</div>
 														</div>
 														<div class="col-xxs-12 col-xs-12 mt">
 															<div class="input-field">
 																<label for="to-place">To:</label>
-																<input type="text" class="form-control" id="to-place"
+																<input type="text" class="form-control" id="to-place" name="to-place"
 																	placeholder="Tokyo, Japan" />
 															</div>
 														</div>
 
 
-														<div class="col-xxs-12 col-xs-12 mt alternate">
+														<div class="col-xxs-12 col-xs-6 mt alternate">
 															<div class="input-field">
 																<label>Date of Departure:</label>
-																<input type="text" class="form-control" id="date-start"
-																	placeholder="mm/dd/yyyy" />
+																<input type="text" class="form-control"  name="start_date"
+																	placeholder="yyyy-mm-dd" />
 															</div>
 														</div>
 
-														<div class=" col-xxs-12 col-xs-6 mt alternate">
+													<!--	<div class="col-xxs-12 col-xs-6 mt alternate">
+															<div class="input-field">
+																<label>Date of Return:</label>
+																<input type="text" class="form-control" id="date-start"
+																	placeholder="Optional" />
+															</div>
+														</div> -->
+
+													<!--	<div class=" col-xxs-12 col-xs-6 mt alternate">
 															<section>
 																<label for="class">Class:</label>
 																<br>
@@ -186,7 +194,7 @@
 																	<option value="4">4</option>
 																</select>
 															</section>
-														</div>
+														</div>  -->
 
 														<div class="col-xs-12">
 															<br>
