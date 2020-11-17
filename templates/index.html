@@ -206,9 +206,13 @@
 														</div>
 
 														<div class="col-xs-12">
-															<br>
+															<br>{% if request.user.is_authenticated %}
 															<input type="submit" class="btn btn-primary btn-block"
 																value="Search Flight">
+
+															{% else %}
+															<span class="btn btn-primary btn-block" >Please Sign In to Search</span>
+															{% endif %}
 														</div>
 													</div>
 
