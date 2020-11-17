@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+
 {% block content%}
 <div id="page">
 
@@ -22,5 +23,84 @@
 		</div>
 	</header>
 
+	<div class="gtco-section">
+		<div class="gtco-container">
+			<div class="col-lg-8">
+			<h2>{{object.airline}}</h2>
+            <br>
+            <h4>{{object.start}}</h4>
+                <br>
+            <h4>{{object.destination}}</h4>
+			</div>
+			<div class="col-lg-4">
+                        <div class="checkout__order">
+                            <div class="checkout__order__product">
 
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+
+                                            <th scope="col">Flight Number</th>
+
+
+                                            <th scope="col">Price per Ticket</th>
+                                        </tr>
+                                    </thead>
+                                    <br>
+                                    <tbody>
+                                        <tr>
+
+                                            <td>{{ object.flight_no }}</td>
+
+                                            <td>
+                                                ${{ object.price }}
+                                            </td>
+
+                                        </tr>
+
+                                        <tr>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
+                            </div>
+                            <div class="checkout__order__total">
+                                <ul>
+                                    <li><b>Number of Seats</b><span>
+
+
+
+                                            <b>{{ seats }} </b>
+
+
+                                        </span></li>
+
+                                </ul>
+                            </div>
+                            <div class="checkout__order__total">
+                                <ul>
+                                    <li><b>Total</b><span>
+
+
+
+                                            <b>${{ object.price }} </b>
+
+
+                                        </span></li>
+
+                                </ul>
+                            </div>
+                            <div class="checkout__order__widget">
+                                <label></label>
+                            </div>
+                            <div >
+                                <button class="btn btn-primary"> Proceed </button>
+                            </div>
+
+                        </div>
+                    </div>
+		</div>
+	</div>
 {% endblock %}
