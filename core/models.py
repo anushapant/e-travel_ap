@@ -11,7 +11,7 @@ class FlightTicket(models.Model):
     destination = models.CharField(max_length = 100, blank=True, null=True)
     date = models.DateField(blank=True, null=True)
     start_time = models.TimeField(blank=True, null=True)
-    arrival_time = models.TimeField(blank=True, null=True)
+    arrival_time =  models.TimeField(blank=True, null=True)
     number_seats = models.IntegerField(default=26)
     number_seats_available = models.IntegerField(default=26)
     price = models.FloatField()
