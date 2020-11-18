@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags  %}
+<head>
+    <title>{% block head_title %}Payment{% endblock %}</title>
+</head>
+
+{% block content  %}
+
+    <!-- Checkout Section Begin -->
+    <section class="checkout spad">
+        <div class="container">
+            <div class="checkout__form">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h5>Payment</h5>
+
+                        <br>
+                        <p>Currently, Travoyage only allows Cash On Delivery. Sorry for any inconvenience caused.</p>
+                        <br>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <span class="btn btn-primary btn-lg">Proceed</span>
+                        </form>
+
+                    </div>
+
+
+                    <!-- This section needs to have functionality for the AP Project-->
+                    <div class="col-lg-8">
+                        <div class="checkout__order">
+                            <h5>Your order</h5>
+                            <div class="checkout__order__product">
+
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Flight</th>
+
+
+                                            <th scope="col">Number of seats</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for order_item in object.tickets.all %}
+                                        <tr>
+                                            <th scope="row">{{ forloop.counter }}</th>
+                                            <td>{{ order_item.ticket.flight_no }}</td>
+
+                                            <td>
+                                                {{ order_item.quantity }}
+                                            </td>
+
+                                        </tr>
+                                        {% empty %}
+                                        <tr>
+                                            <td colspan="5">Your cart is empty</td>
+                                        </tr>
+                                        <tr>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+
+
+                            </div>
+                            <div class="checkout__order__total">
+                                <ul>
+                                    <li><b>Order Total</b><span>
+                                            {% if object.total_amount %}
+
+
+                                            <b>${{ object.total_amount }}</b>
+                                            {% endif %}
+
+                                        </span></li>
+
+                                </ul>
+                            </div>
+                            <div class="checkout__order__widget">
+                                <label>Currently, Travoyage only allows Cash On Delivery. Sorry for any inconvenience caused.</label>
+                            </div>
+
+
+                            <!-- <button type="submit" class="site-btn">Place oder </button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Checkout Section End -->
+
+{% endblock content %}

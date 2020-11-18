@@ -39,6 +39,10 @@ class Flight_Booking_List(models.Model):
     def __str__(self):
         return self.ticket.flight_no
 
+    def final_amount(self):
+        amount = self.ticket.price * self.quantity
+        return amount
+
 class Transactions(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     first_name = models.CharField(max_length = 100,blank=True, null=True)
@@ -61,3 +65,9 @@ class Transactions(models.Model):
             if ticket.booked is False:
                 ticket.booked = True
                 ticket.save()
+
+    def total_amount(self):
+        total = 0
+        for order_item in self.tickets.all():
+            total += order_item.final_amount()
+        return total

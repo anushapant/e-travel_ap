@@ -75,7 +75,7 @@ def add_to_cart(request, slug):
         order_date = timezone.now()
         order = Transactions.objects.create(user=request.user, booked_date=order_date)
         order.tickets.add(orderItem)
-        messages.info(request, "Almost done!")
+        messages.success(request, "Almost done!")
         return redirect("core:confirmation")
 
 
@@ -124,7 +124,7 @@ class confirmation(LoginRequiredMixin, View):
                     messages.info(self.request, "Please fill in the required fields")
 
                 messages.success(self.request, "Almost Done")
-                return redirect('core:home')
+                return redirect('core:payment')
 
             messages.info(self.request, "Failed Checkout")
             return redirect('core:home')
@@ -132,4 +132,17 @@ class confirmation(LoginRequiredMixin, View):
         except ObjectDoesNotExist:
             messages.error(self.request, "You do not have an active order")
             return redirect("core:home")
+
+class payment_View(View):
+    def get(self, *args, **kwargs):
+        try:
+            order = Transactions.objects.get(user=self.request.user, booked=False)
+            context = {
+                'object': order
+            }
+            return render(self.request, "payment.html", context)
+        except ObjectDoesNotExist:
+            messages.error(self.request, "You do not have an active order")
+            return redirect("/")
+
 
