@@ -175,7 +175,7 @@
 																<br>
 
 																<input class="form-control" size="22" name="adults" type="number" min="0"
-                                								placeholder="1" >
+                                								placeholder="1" value="0">
 															</section>
 														</div>
 														<div class="col-xxs-12 col-xs-6 mt alternate">
@@ -185,7 +185,7 @@
 
 
 																<input class="form-control" size="22" name="children" type="number" min="0"
-                                								placeholder="1" >
+                                								placeholder="1" value="0">
 
 															</section>
 														</div>
@@ -196,7 +196,10 @@
 																value="Search Flight">
 
 															{% else %}
-															<span class="btn btn-primary btn-block" >Please Sign In to Search</span>
+															<a href="{%url 'account_login'%}">
+																<span class="btn btn-primary btn-block">Please Sign In to Search</span>
+															</a>
+
 															{% endif %}
 														</div>
 													</div>

@@ -36,18 +36,24 @@ def flights(request):
         adults = request.GET.get('adults')
         children = request.GET.get('children')
         seats_required = int(adults) + int(children)
-        if from_place is not None and to_place is not None and start_date is not None and seats_required is not None:
-            lookups = Q(start__icontains=from_place, destination__icontains=to_place, date=start_date, number_seats_available__gte = seats_required   )
+        if seats_required != 0:
 
-            results = FlightTicket.objects.filter(lookups)
+            if from_place is not None and to_place is not None and start_date is not None and seats_required is not None:
+                lookups = Q(start__icontains=from_place, destination__icontains=to_place, date=start_date, number_seats_available__gte = seats_required   )
 
-            context = {'object_list': results,
-                       'seats_required':seats_required}
+                results = FlightTicket.objects.filter(lookups)
 
-            return render(request, 'flights_results.html', context)
+                context = {'object_list': results,
+                           'seats_required':seats_required}
 
+                return render(request, 'flights_results.html', context)
+
+            else:
+                return render(request, 'flights_results.html')
         else:
-            return render(request, 'flights_results.html')
+            # messages.error(request, "Please enter the number of adults/children")
+            return render(request, 'index.html')
+
 
     else:
         return render(request, 'flights_results.html')
