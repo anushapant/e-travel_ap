@@ -25,20 +25,39 @@ class FlightTicket(models.Model):
             'slug': self.slug
         })
 
+    def add_to_cart_url(self):
+        return reverse("core:add-to-cart", kwargs={
+            'slug': self.slug
+        })
+
 class Flight_Booking_List(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     ticket = models.ForeignKey(FlightTicket, on_delete=models.CASCADE)
     booked = models.BooleanField(default=False)
-    quantity = models.IntegerField(default=1)
+    quantity = models.IntegerField(default=1, null=True)
 
     def __str__(self):
         return self.ticket.flight_no
 
 class Transactions(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)    
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length = 100,blank=True, null=True)
+    last_name = models.CharField(max_length = 100,blank=True, null=True)
     tickets = models.ManyToManyField(Flight_Booking_List)          #used instead of items
     booked_date = models.DateTimeField()                    #used instead of ordered_date
     booked = models.BooleanField(default=False)             #used instead of ordered 
 
     def __str__(self):
         return self.user.username
+
+    def flight_seats(self, seats):
+        for ticket in self.tickets.all():
+            if ticket.booked is False:
+                ticket.quantity = seats
+                ticket.save()
+
+    def flight_booked(self):
+        for ticket in self.tickets.all():
+            if ticket.booked is False:
+                ticket.booked = True
+                ticket.save()

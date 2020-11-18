@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, View
 from .models import FlightTicket, Flight_Booking_List, Transactions
+from .forms import conformation_form
 from django.utils import timezone
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
@@ -40,7 +41,8 @@ def flights(request):
 
             results = FlightTicket.objects.filter(lookups)
 
-            context = {'object_list': results}
+            context = {'object_list': results,
+                       'seats_required':seats_required}
 
             return render(request, 'flights_results.html', context)
 
@@ -54,6 +56,80 @@ def flights(request):
 def seats(request):
     return render(request, "seats.html")
 
-class flight_details_V(DetailView):
-    model = FlightTicket
-    template_name = "flight_details.html"
+def flight_details_V(request, slug):
+    flight = get_object_or_404(FlightTicket, slug=slug)
+    content = {
+        'object': flight
+    }
+    return render(request, 'flight_details.html', content)
+
+
+@login_required
+def add_to_cart(request, slug):
+        flight = get_object_or_404(FlightTicket, slug=slug)
+        orderItem, created = Flight_Booking_List.objects.get_or_create(
+            ticket=flight,
+            user=request.user,
+            booked=False
+        )
+        order_date = timezone.now()
+        order = Transactions.objects.create(user=request.user, booked_date=order_date)
+        order.tickets.add(orderItem)
+        messages.info(request, "Almost done!")
+        return redirect("core:confirmation")
+
+
+def is_valid_form(values):
+    valid = True
+    for field in values:
+        if field == '':
+            valid = False
+    return valid
+
+class confirmation(LoginRequiredMixin, View):
+    def get(self, *args, **kwargs):
+
+        form = conformation_form()
+        try:
+            order = Transactions.objects.get(user=self.request.user, booked=False)
+            context = {
+                'object': order,
+                'form': form
+            }
+
+            return render(self.request, "details_confirmation.html", context)
+        except ObjectDoesNotExist:
+            messages.error(self.request, "You do not have an active order")
+            return redirect("/")
+
+    def post(self, *args, **kwargs):
+        form = conformation_form(self.request.POST or None)
+        try:
+            order = Transactions.objects.get(user=self.request.user, booked=False)
+
+            if form.is_valid():
+
+                first_name = form.cleaned_data.get('first_name')
+                last_name = form.cleaned_data.get('last_name')
+                number_of_seats = form.cleaned_data.get('number_of_seats')
+
+                if is_valid_form([first_name, last_name, number_of_seats]):
+                    order.first_name = first_name
+                    order.last_name = last_name
+                    order.flight_seats(number_of_seats)
+                    order.save()
+
+
+                else:
+                    messages.info(self.request, "Please fill in the required fields")
+
+                messages.success(self.request, "Almost Done")
+                return redirect('core:home')
+
+            messages.info(self.request, "Failed Checkout")
+            return redirect('core:home')
+
+        except ObjectDoesNotExist:
+            messages.error(self.request, "You do not have an active order")
+            return redirect("core:home")
+

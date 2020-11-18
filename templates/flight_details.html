@@ -32,7 +32,7 @@
                 <br>
             <h4>{{object.destination}}</h4>
 			</div>
-			<div class="col-lg-4">
+            <div class="col-lg-4">
                         <div class="checkout__order">
                             <div class="checkout__order__product">
 
@@ -66,39 +66,13 @@
 
 
                             </div>
-                            <div class="checkout__order__total">
-                                <ul>
-                                    <li><b>Number of Seats</b><span>
 
+                           <div class="checkout__order__widget">
 
-
-                                            <b>{{ seats }} </b>
-
-
-                                        </span></li>
-
-                                </ul>
-                            </div>
-                            <div class="checkout__order__total">
-                                <ul>
-                                    <li><b>Total</b><span>
-
-
-
-                                            <b>${{ object.price }} </b>
-
-
-                                        </span></li>
-
-                                </ul>
-                            </div>
-                            <div class="checkout__order__widget">
-                                <label></label>
                             </div>
                             <div >
-                                <button class="btn btn-primary"> Proceed </button>
+                                <a class="btn btn-primary" href="{{ object.add_to_cart_url}}"> Proceed </a>
                             </div>
-
                         </div>
                     </div>
 		</div>
