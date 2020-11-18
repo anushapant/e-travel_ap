@@ -1,4 +1,4 @@
-# E-travel Website
+# Travoyage
 
 Made by Ayush Agarwal, Isha Singh, and Anusha Pant
 
