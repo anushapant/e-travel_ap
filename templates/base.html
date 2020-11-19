@@ -72,7 +72,7 @@
 
 			<div class="row">
 				<div class="col-sm-4 col-xs-12">
-						<div id="trav-logo"><a href="index.html"><img src="{% static 'images/rsz_travoyage.png' %}"></a></div>
+						<div id="trav-logo"><a href="/index.html"><img src="{% static 'images/rsz_travoyage.png' %}"></a></div>
 					</div>
 				<div class="col-xs-8 text-right menu-1">
 					<ul>
@@ -90,6 +90,7 @@
 						<li><a href="/contact.html">Contact</a></li>
 						{% if request.user.is_authenticated %}
 						<li><a href="{%url 'account_logout'%}">Logout</a></li>
+						<li><a href="/my_account">My Account</a></li>
 						{% else %}
 						<li><a href="{%url 'account_login'%}">Login</a>/<a href="{%url 'account_signup'%}">Register</a></li>
 						{% endif %}
