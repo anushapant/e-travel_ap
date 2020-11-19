@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+<html>
+	<head>
+	<title>Traveler &mdash; Free Website Template, Free HTML5 Template by FreeHTML5.co</title>
+	</head>
+	<body>
+	{% block content %}
+
+
+	<header id="gtco-header" class="gtco-cover gtco-cover-sm" role="banner" style="background-image: url(/static/images/home_flight.jpg)">
+		<div class="overlay"></div>
+		<div class="gtco-container">
+			<div class="row">
+				<div class="col-md-12 col-md-offset-0 text-left">
+					<div class="row row-mt-15em">
+
+						<div class="col-md-7 mt-text animate-box" data-animate-effect="fadeInUp">
+							<span class="intro-text-small">Travoyage</span>
+							<h1>My Account</h1>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</header>
+
+
+	<div class="gtco-section border-bottom">
+		<div class="gtco-container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="col-md-6 animate-box">
+					<h3>Hi {{user}}</h3>
+					<p> Your username is : {{user}}</p>
+
+					Would you like to change your password?
+                <a href="/accounts/password/change" class="btn btn-primary btn-block">Change Password</a>
+                <br>
+						<br>
+					Would you like to view the flights that you have previously booked?
+                <a href="/my_flights" class="btn btn-primary btn-block">View My Flights</a>
+                <br>
+				</div>
+				<div class="col-md-5 col-md-push-1 animate-box">
+
+					<div class="gtco-contact-info">
+						<h3>Happy Travelling!!</h3>
+					</div>
+
+
+
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- </div> -->
+
+	</div>
+
+	<div class="gototop js-top">
+		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+	</div>
+	{% endblock content %}
+	</body>
+</html>
+

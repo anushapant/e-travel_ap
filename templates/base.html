@@ -90,6 +90,7 @@
 						<li><a href="/contact.html">Contact</a></li>
 						{% if request.user.is_authenticated %}
 						<li><a href="{%url 'account_logout'%}">Logout</a></li>
+						<li><a href="/my_account">My Account</a></li>
 						{% else %}
 						<li><a href="{%url 'account_login'%}">Login</a>/<a href="{%url 'account_signup'%}">Register</a></li>
 						{% endif %}

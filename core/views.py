@@ -62,6 +62,22 @@ def flights(request):
 def seats(request):
     return render(request, "seats.html")
 
+def my_account(request):
+    user = request.user.username
+    content={
+        'user' : user
+    }
+    return render(request, "my_account.html", content)
+
+def my_flights(request):
+    user = request.user.username
+    my_flight_list = Flight_Booking_List.objects.filter(user=request.user, booked=True)
+    content = {
+        'user': user,
+        'flights': my_flight_list
+    }
+    return render(request, "my_flights.html", content)
+
 def flight_details_V(request, slug):
     flight = get_object_or_404(FlightTicket, slug=slug)
     content = {
