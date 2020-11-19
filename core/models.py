@@ -43,6 +43,10 @@ class Flight_Booking_List(models.Model):
         amount = self.ticket.price * self.quantity
         return amount
 
+    def update_no_seats(self):
+        self.ticket.number_seats_available = self.ticket.number_seats_available - self.quantity
+        self.ticket.save()
+
 class Transactions(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     first_name = models.CharField(max_length = 100,blank=True, null=True)
@@ -71,3 +75,9 @@ class Transactions(models.Model):
         for order_item in self.tickets.all():
             total += order_item.final_amount()
         return total
+
+    def update_seats(self):
+        for ticket in self.tickets.all():
+            if ticket.booked is False:
+                ticket.update_no_seats()
+                ticket.save()

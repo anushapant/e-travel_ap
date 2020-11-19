@@ -13,14 +13,17 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <h5>Payment</h5>
+                        <p>Please enter your Credit/Debit Card Number. An OTP will then be sent to the linked phone number.</p>
+                            <form method="POST">
+                                 {% csrf_token %}
+                                {{ form|crispy }}
 
+
+                                 <button class="btn btn-primary btn-lg" type="submit">Proceed</button>
+                             </form>
                         <br>
-                        <p>Currently, Travoyage only allows Cash On Delivery. Sorry for any inconvenience caused.</p>
+                        <p></p>
                         <br>
-                        <form method="POST">
-                            {% csrf_token %}
-                            <span class="btn btn-primary btn-lg">Proceed</span>
-                        </form>
 
                     </div>
 
@@ -78,7 +81,7 @@
                                 </ul>
                             </div>
                             <div class="checkout__order__widget">
-                                <label>Currently, Travoyage only allows Cash On Delivery. Sorry for any inconvenience caused.</label>
+                               <!--  <label>Currently, Travoyage only allows Cash On Delivery. Sorry for any inconvenience caused.</label> -->
                             </div>
 
 

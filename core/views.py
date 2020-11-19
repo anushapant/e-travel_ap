@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, View
 from .models import FlightTicket, Flight_Booking_List, Transactions
-from .forms import conformation_form
+from .forms import conformation_form, payment_form
 from django.utils import timezone
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
@@ -81,7 +81,7 @@ def add_to_cart(request, slug):
         order_date = timezone.now()
         order = Transactions.objects.create(user=request.user, booked_date=order_date)
         order.tickets.add(orderItem)
-        messages.success(request, "Almost done!")
+        #messages.success(request, "Almost done!")
         return redirect("core:confirmation")
 
 
@@ -129,7 +129,7 @@ class confirmation(LoginRequiredMixin, View):
                 else:
                     messages.info(self.request, "Please fill in the required fields")
 
-                messages.success(self.request, "Almost Done")
+                #messages.success(self.request, "Almost Done")
                 return redirect('core:payment')
 
             messages.info(self.request, "Failed Checkout")
@@ -141,14 +141,43 @@ class confirmation(LoginRequiredMixin, View):
 
 class payment_View(View):
     def get(self, *args, **kwargs):
+        form = payment_form(self.request.POST or None)
         try:
             order = Transactions.objects.get(user=self.request.user, booked=False)
             context = {
-                'object': order
+                'object': order,
+                'form' : form
             }
             return render(self.request, "payment.html", context)
         except ObjectDoesNotExist:
             messages.error(self.request, "You do not have an active order")
             return redirect("/")
 
+    def post(self, *args, **kwargs):
+        form = payment_form(self.request.POST or None)
+        try:
+            order = Transactions.objects.get(user=self.request.user, booked=False)
 
+            if form.is_valid():
+
+                card_no = form.cleaned_data.get('Card_Number')
+                otp = form.cleaned_data.get('OTP')
+
+                if is_valid_form([card_no, otp]):
+                    order.update_seats()
+                    order.flight_booked()
+                    order.booked = True
+                    order.save()
+
+                else:
+                    messages.info(self.request, "Please fill in the required fields")
+
+                messages.success(self.request, "Congratulations!! You have successfully booked your flight!")
+                return redirect('core:home')
+
+            messages.info(self.request, "Failed Checkout")
+            return redirect('core:home')
+
+        except ObjectDoesNotExist:
+            messages.error(self.request, "You do not have an active order")
+            return redirect("core:home")
