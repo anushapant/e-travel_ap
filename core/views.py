@@ -35,11 +35,17 @@ def flights(request):
         start_date = request.GET.get('start_date')
         adults = request.GET.get('adults')
         children = request.GET.get('children')
+        seat_class = request.GET.get('class')
         seats_required = int(adults) + int(children)
         if seats_required != 0:
 
-            if from_place is not None and to_place is not None and start_date is not None and seats_required is not None:
-                lookups = Q(start__icontains=from_place, destination__icontains=to_place, date=start_date, number_seats_available__gte = seats_required   )
+            if from_place is not None and to_place is not None and start_date is not None:
+                if seat_class == 'first':
+                    lookups = Q(start__icontains=from_place, destination__icontains=to_place, date=start_date, first_class_seats__gte = seats_required   )
+
+                else:
+                    lookups = Q(start__icontains=from_place, destination__icontains=to_place, date=start_date,
+                                number_seats_available__gte=seats_required)
 
                 results = FlightTicket.objects.filter(lookups)
 
@@ -80,8 +86,10 @@ def my_flights(request):
 
 def flight_details_V(request, slug):
     flight = get_object_or_404(FlightTicket, slug=slug)
+    price = flight.first_class_price()
     content = {
-        'object': flight
+        'object': flight,
+        'first_class_price' :price
     }
     return render(request, 'flight_details.html', content)
 
@@ -134,11 +142,13 @@ class confirmation(LoginRequiredMixin, View):
                 first_name = form.cleaned_data.get('first_name')
                 last_name = form.cleaned_data.get('last_name')
                 number_of_seats = form.cleaned_data.get('number_of_seats')
+                seats_class = form.cleaned_data.get('seats_class')
 
                 if is_valid_form([first_name, last_name, number_of_seats]):
                     order.first_name = first_name
                     order.last_name = last_name
                     order.flight_seats(number_of_seats)
+                    order.seats_class = seats_class
                     order.save()
 
 
@@ -180,7 +190,10 @@ class payment_View(View):
                 otp = form.cleaned_data.get('OTP')
 
                 if is_valid_form([card_no, otp]):
-                    order.update_seats()
+                    if order.seats_class == 'economy':
+                        order.update_seats()
+                    else:
+                        order.update_seats_fc()
                     order.flight_booked()
                     order.booked = True
                     order.save()

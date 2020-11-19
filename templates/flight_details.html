@@ -25,14 +25,14 @@
 
 	<div class="gtco-section">
 		<div class="gtco-container">
-			<div class="col-lg-8">
+			<div class="col-lg-7">
 			<h2>{{object.airline}}</h2>
             <br>
             <h4>{{object.start}}</h4>
                 <br><h5>TO</h5><br>
             <h4>{{object.destination}}</h4>
 			</div>
-            <div class="col-lg-4">
+            <div class="col-lg-5">
                         <div class="checkout__order">
                             <div class="checkout__order__product">
 
@@ -42,6 +42,7 @@
 
                                             <th scope="col">Flight Number</th>
 
+                                            <th scope="col">Class</th>
 
                                             <th scope="col">Price per Ticket</th>
                                         </tr>
@@ -52,6 +53,8 @@
 
                                             <td>{{ object.flight_no }}</td>
 
+                                            <td>Economy</td>
+
                                             <td>
                                                 ${{ object.price }}
                                             </td>
@@ -59,7 +62,13 @@
                                         </tr>
 
                                         <tr>
+                                            <td></td>
 
+                                            <td>First Class</td>
+
+                                            <td>
+                                                ${{ first_class_price}}
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>

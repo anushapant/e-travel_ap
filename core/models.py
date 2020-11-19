@@ -11,11 +11,14 @@ class FlightTicket(models.Model):
     destination = models.CharField(max_length = 100, blank=True, null=True)
     date = models.DateField(blank=True, null=True)
     start_time = models.TimeField(blank=True, null=True)
-    arrival_time =  models.TimeField(blank=True, null=True)
+    arrival_time = models.TimeField(blank=True, null=True)
     duration_hr = models.IntegerField(default=0)
     duration_min = models.IntegerField(default=0)
     number_seats = models.IntegerField(default=26)
-    number_seats_available = models.IntegerField(default=26)
+    # economy seats
+    number_seats_available = models.IntegerField(default=20)
+    # first class seats
+    first_class_seats = models.IntegerField(default=6)
     price = models.FloatField()
     slug = models.SlugField(blank=True, null=True)
 
@@ -31,6 +34,10 @@ class FlightTicket(models.Model):
         return reverse("core:add-to-cart", kwargs={
             'slug': self.slug
         })
+
+    def first_class_price(self):
+        price = self.price*1.10
+        return price
 
 class Flight_Booking_List(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
@@ -49,13 +56,18 @@ class Flight_Booking_List(models.Model):
         self.ticket.number_seats_available = self.ticket.number_seats_available - self.quantity
         self.ticket.save()
 
+    def update_no_seats_fc(self):
+        self.ticket.first_class_seats = self.ticket.first_class_seats - self.quantity
+        self.ticket.save()
+
 class Transactions(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     first_name = models.CharField(max_length = 100,blank=True, null=True)
     last_name = models.CharField(max_length = 100,blank=True, null=True)
     tickets = models.ManyToManyField(Flight_Booking_List)          #used instead of items
     booked_date = models.DateTimeField()                    #used instead of ordered_date
-    booked = models.BooleanField(default=False)             #used instead of ordered 
+    booked = models.BooleanField(default=False)             #used instead of ordered
+    seats_class = models.CharField(max_length = 100,blank=True, null=True)
 
     def __str__(self):
         return self.user.username
@@ -82,4 +94,10 @@ class Transactions(models.Model):
         for ticket in self.tickets.all():
             if ticket.booked is False:
                 ticket.update_no_seats()
+                ticket.save()
+
+    def update_seats_fc(self):
+        for ticket in self.tickets.all():
+            if ticket.booked is False:
+                ticket.update_no_seats_fc()
                 ticket.save()
