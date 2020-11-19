@@ -102,6 +102,11 @@ h1, h2, h3, h4, h5, h6, figure {
   padding: 20px 0;
   z-index: 1001;
 }
+
+#message {
+border: 2px solid #c295d8;
+}
+
 @media screen and (max-width: 768px) {
   .gtco-nav {
     padding: 20px 0;

@@ -971,7 +971,7 @@ form {
 		color: $brand-white;
 		font-size: 16px!important;
 		width: 100%;
-		border: 2px solid rgba(255,255,255,.2)!important;
+		border: 2px solid #c295d8;
 		@include transition(.5s);
 		&:focus {
 			background: transparent;
@@ -1477,17 +1477,17 @@ form {
 .form-control {
 	box-shadow: none;
 	background: transparent;
-	border: 2px solid rgba(0, 0, 0, 0.1);
+	border: 2px solid #c295d8;
 	height: 46px;
 	font-size: 16px;
 	font-weight: 300;
 	padding-left: 15px;
 	padding-right: 15px;
-  	&:active, &:focus {
-  		outline: none;
-		box-shadow: none;
-		border-color: $brand-primary;
-  }
+//   	&:active, &:focus {
+//   		outline: none;
+// 		box-shadow: none;
+// 		border-color: $brand-primary;
+//   }
 }
 .row-mt-15em {
 	margin-top: 15em;
