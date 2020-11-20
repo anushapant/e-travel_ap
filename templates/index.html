@@ -79,20 +79,12 @@
 					<div class="col-xs-8 text-right menu-1">
 						<ul>
 							<li><a href="destination.html">Destination</a></li>
-							<li class="has-dropdown">
-								<a href="#">Travel</a>
-								<ul class="dropdown">
-									<li><a href="#">Europe</a></li>
-									<li><a href="#">Asia</a></li>
-									<li><a href="#">America</a></li>
-									<li><a href="#">Canada</a></li>
-								</ul>
-							</li>
 							<li><a href="pricing.html">Pricing</a></li>
 							<li><a href="contact.html">Contact</a></li>
 							{% if request.user.is_authenticated %}
-							<li><a href="{%url 'account_logout'%}">Logout</a></li>
 							<li><a href="/my_account">My Account</a></li>
+							<li><a href="{%url 'account_logout'%}">Logout</a></li>
+
 							{% else %}
 							<li><a href="{%url 'account_login'%}">Login</a>/<a
 									href="{%url 'account_signup'%}">Register</a></li>
@@ -241,8 +233,7 @@
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 text-center gtco-heading">
 					<h2>Most Popular Destinations</h2>
-					<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident.
-						Odit ab aliquam dolor eius.</p>
+					<p>Check out our TOP 3 Destinations. Want to see more? Head over to <a href="/destination.html">Destinations</a>!</p>
 				</div>
 			</div>
 			<div class="row">
@@ -254,22 +245,9 @@
 							<img src="{% static 'images/rsz_new_york.jpg' %}" alt="Image" class="img-responsive">
 						</figure>
 						<div class="fh5co-text">
-							<h2>New York, USA</h2>
+							<h2>The United States</h2>
 							<p>Far far away, behind the word mountains, far from the countries Vokalia..</p>
-							<p><span class="btn btn-primary">Schedule a Trip</span></p>
-						</div>
-					</a>
-				</div>
-				<div class="col-lg-4 col-md-4 col-sm-6">
-					<a href="{% static 'images/seoul.jpg' %}" class="fh5co-card-item image-popup">
-						<figure>
-							<div class="overlay"><i class="ti-plus"></i></div>
-							<img src="{% static 'images/seoul.jpg' %}" alt="Image" class="img-responsive">
-						</figure>
-						<div class="fh5co-text">
-							<h2>Seoul, South Korea</h2>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia..</p>
-							<p><span class="btn btn-primary">Schedule a Trip</span></p>
+							<p><span class="btn btn-primary">More</span></p>
 						</div>
 					</a>
 				</div>
@@ -280,24 +258,9 @@
 							<img src="{% static 'images/paris.jpg' %}" alt="Image" class="img-responsive">
 						</figure>
 						<div class="fh5co-text">
-							<h2>Paris, France</h2>
+							<h2>France</h2>
 							<p>Far far away, behind the word mountains, far from the countries Vokalia..</p>
-							<p><span class="btn btn-primary">Schedule a Trip</span></p>
-						</div>
-					</a>
-				</div>
-
-
-				<div class="col-lg-4 col-md-4 col-sm-6">
-					<a href="{% static 'images/sydney.jpg' %}" class="fh5co-card-item image-popup">
-						<figure>
-							<div class="overlay"><i class="ti-plus"></i></div>
-							<img src="{% static 'images/sydney.jpg' %}" alt="Image" class="img-responsive">
-						</figure>
-						<div class="fh5co-text">
-							<h2>Sydney, Australia</h2>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia..</p>
-							<p><span class="btn btn-primary">Schedule a Trip</span></p>
+							<p><span class="btn btn-primary">More</span></p>
 						</div>
 					</a>
 				</div>
@@ -309,27 +272,12 @@
 							<img src="{% static 'images/greece.jpg' %}" alt="Image" class="img-responsive">
 						</figure>
 						<div class="fh5co-text">
-							<h2>Greece, Europe</h2>
+							<h2>Greece</h2>
 							<p>Far far away, behind the word mountains, far from the countries Vokalia..</p>
-							<p><span class="btn btn-primary">Schedule a Trip</span></p>
+							<p><span class="btn btn-primary">More</span></p>
 						</div>
 					</a>
 				</div>
-
-				<div class="col-lg-4 col-md-4 col-sm-6">
-					<a href="{% static 'images/spain' %}" class="fh5co-card-item image-popup">
-						<figure>
-							<div class="overlay"><i class="ti-plus"></i></div>
-							<img src="{% static 'images/spain.jpg' %}" alt="Image" class="img-responsive">
-						</figure>
-						<div class="fh5co-text">
-							<h2>Spain, Europe</h2>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia..</p>
-							<p><span class="btn btn-primary">Schedule a Trip</span></p>
-						</div>
-					</a>
-				</div>
-
 			</div>
 		</div>
 	</div>
@@ -339,8 +287,7 @@
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 text-center gtco-heading animate-box">
 					<h2>How It Works</h2>
-					<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident.
-						Odit ab aliquam dolor eius.</p>
+					<p>3 simple steps, and you will soon find yourself flying across the globe!!</p>
 				</div>
 			</div>
 			<div class="row">
@@ -349,9 +296,8 @@
 						<span class="icon">
 							<i>1</i>
 						</span>
-						<h3>Lorem ipsum dolor sit amet</h3>
-						<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem
-							provident. Odit ab aliquam dolor eius.</p>
+						<h3>Search</h3>
+						<p>Search for a desired flight on a desired date.</p>
 					</div>
 				</div>
 				<div class="col-md-4 col-sm-6">
@@ -359,9 +305,8 @@
 						<span class="icon">
 							<i>2</i>
 						</span>
-						<h3>Consectetur adipisicing elit</h3>
-						<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem
-							provident. Odit ab aliquam dolor eius.</p>
+						<h3>Choose</h3>
+						<p>Choose a flight that suits you the best.</p>
 					</div>
 				</div>
 				<div class="col-md-4 col-sm-6">
@@ -369,9 +314,8 @@
 						<span class="icon">
 							<i>3</i>
 						</span>
-						<h3>Dignissimos asperiores vitae</h3>
-						<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem
-							provident. Odit ab aliquam dolor eius.</p>
+						<h3>Book</h3>
+						<p>Confirm the flight, proceed to the payment stage, and Voila! Your flight is booked!.</p>
 					</div>
 				</div>
 
@@ -397,9 +341,8 @@
 
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 text-center gtco-heading animate-box">
-					<h2>Our Success</h2>
-					<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident.
-						Odit ab aliquam dolor eius.</p>
+					<h2>More About Us</h2>
+					<p>Over the past few years, we have successfully provided services to thousands of people!</p>
 				</div>
 			</div>
 
@@ -407,17 +350,17 @@
 
 				<div class="col-md-3 col-sm-6 animate-box" data-animate-effect="fadeInUp">
 					<div class="feature-center">
-						<span class="counter js-counter" data-from="0" data-to="196" data-speed="5000"
+						<span class="counter js-counter" data-from="0" data-to="97" data-speed="5000"
 							data-refresh-interval="50">1</span>
-						<span class="counter-label">Destination</span>
+						<span class="counter-label">Destinations</span>
 
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-6 animate-box" data-animate-effect="fadeInUp">
 					<div class="feature-center">
-						<span class="counter js-counter" data-from="0" data-to="97" data-speed="5000"
+						<span class="counter js-counter" data-from="0" data-to="196" data-speed="5000"
 							data-refresh-interval="50">1</span>
-						<span class="counter-label">Hotels</span>
+						<span class="counter-label">Flights</span>
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-6 animate-box" data-animate-effect="fadeInUp">
@@ -429,9 +372,9 @@
 				</div>
 				<div class="col-md-3 col-sm-6 animate-box" data-animate-effect="fadeInUp">
 					<div class="feature-center">
-						<span class="counter js-counter" data-from="0" data-to="12202" data-speed="5000"
+						<span class="counter js-counter" data-from="0" data-to="12396" data-speed="5000"
 							data-refresh-interval="50">1</span>
-						<span class="counter-label">Happy Customer</span>
+						<span class="counter-label">Happy Customers</span>
 
 					</div>
 				</div>
@@ -447,7 +390,7 @@
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center gtco-heading">
 					<h2>Subscribe</h2>
-					<p>Be the first to know about the new templates.</p>
+					<p>Would you like to be updated about the latest offers? Please subscribe here:</p>
 				</div>
 			</div>
 			<div class="row animate-box">
@@ -481,39 +424,14 @@
 					</div>
 				</div>
 
-				<div class="col-md-2 col-md-push-1">
-					<div class="gtco-widget">
-						<h3>Destination</h3>
-						<ul class="gtco-footer-links">
-							<li><a href="#">Europe</a></li>
-							<li><a href="#">Australia</a></li>
-							<li><a href="#">Asia</a></li>
-							<li><a href="#">Canada</a></li>
-							<li><a href="#">Dubai</a></li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="col-md-2 col-md-push-1">
-					<div class="gtco-widget">
-						<h3>Hotels</h3>
-						<ul class="gtco-footer-links">
-							<li><a href="#">Luxe Hotel</a></li>
-							<li><a href="#">Italy 5 Star hotel</a></li>
-							<li><a href="#">Dubai Hotel</a></li>
-							<li><a href="#">Deluxe Hotel</a></li>
-							<li><a href="#">BoraBora Hotel</a></li>
-						</ul>
-					</div>
-				</div>
 
 				<div class="col-md-3 col-md-push-1">
 					<div class="gtco-widget">
 						<h3>Get In Touch</h3>
 						<ul class="gtco-quick-contact">
-							<li><a href="#"><i class="icon-phone"></i> +1 234 567 890</a></li>
-							<li><a href="#"><i class="icon-mail2"></i> info@freehtml5.co</a></li>
-							<li><a href="#"><i class="icon-chat"></i> Live Chat</a></li>
+							<li><a href="#"><i class="icon-phone"></i> +111-111-1111</a></li>
+							<li><a href="#"><i class="icon-mail2"></i> support@travoyage.com</a></li>
+							<li><a href="#"><i class="icon-chat"></i> Live Chat with Us</a></li>
 						</ul>
 					</div>
 				</div>

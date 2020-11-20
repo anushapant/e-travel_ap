@@ -39,6 +39,7 @@ class FlightTicket(models.Model):
         price = self.price*1.10
         return price
 
+
 class Flight_Booking_List(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     ticket = models.ForeignKey(FlightTicket, on_delete=models.CASCADE)
