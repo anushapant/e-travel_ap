@@ -28,13 +28,13 @@
 		</div>
 	</header>
 
-<body class="header">
-  <div class="container">
+
+  <div class="container gtco-section" style="
+    padding-top: 10px;
+">
     <div class="row">
       <div class="col-12">
         <br>
-        <br>
-
         <br>
 
         <h3>Please login with a <a href="{% provider_login_url "google" %}">Google Account</a> or <a href="{{ signup_url }}">Sign up</a>
@@ -48,8 +48,8 @@
           {% if redirect_field_value %}
           <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
           {% endif %}
-          <a class="btn btn-default" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-          <button class="btn cart-btn" type="submit">{% trans "Sign In" %}</button>
+          <a class="btn btn-outline-primary" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+          <button class="btn btn-primary" type="submit">{% trans "Sign In" %}</button>
         </form>
 
       </div>
@@ -59,7 +59,6 @@
     </div>
   </div>
 
-</body>
 
 
 

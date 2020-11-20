@@ -19,6 +19,10 @@ body {
   background: #fff;
 }
 
+.new-padding {
+  padding: 5em;
+}
+
 #page {
   position: relative;
   overflow-x: hidden;
@@ -750,6 +754,7 @@ form label {
   clear: both;
   position: relative;
 }
+
 @media screen and (max-width: 768px) {
   #gtco-features,
   #gtco-features-2,
