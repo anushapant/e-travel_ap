@@ -105,8 +105,11 @@ class Transactions(models.Model):
 
 
 class Destination(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, blank=True, null=True)
     image = models.ImageField(upload_to="destination", blank=True)
+    about = models.CharField(max_length=250, blank=True, null=True)
+    quote = models.CharField(max_length=250,blank=True, null=True)
+    things_to_do = models.CharField(max_length=250,blank=True, null=True)
     slug = models.SlugField(blank=True, null=True)
 
     def __str__(self):
