@@ -11,10 +11,11 @@
 		<div class="overlay"></div>
 		<div class="gtco-container">
 			<div class="row">
-				<div class="col-md-12 col-md-offset-0 text-left">
+				<div class="col-md-12 col-md-offset-0 text-center">
 					<div class="row row-mt-15em">
 
-						<div class="col-md-7 mt-text animate-box" data-animate-effect="fadeInUp">
+						<div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp" style="
+    margin-top: 80px;>
 							<span class="intro-text-small">Travoyage</span>
 							<h1>My Account</h1>
 						</div>
@@ -35,18 +36,22 @@
 					<h3>Hi {{user}}</h3>
 					<p> Your username is : {{user}}</p>
 
-					Would you like to change your password?
-                <a href="/accounts/password/change" class="btn btn-primary btn-block">Change Password</a>
+					Would you like to change your password? <br>
+                <a href="/accounts/password/change" class="btn btn-primary btn-sm">Change Password</a>
                 <br>
 						<br>
-					Would you like to view the flights that you have previously booked?
-                <a href="/my_flights" class="btn btn-primary btn-block">View My Flights</a>
+					Would you like to view the flights that you have previously booked?<br>
+                <a href="/my_flights" class="btn btn-primary btn-sm">View My Flights</a>
                 <br>
 				</div>
 				<div class="col-md-5 col-md-push-1 animate-box">
 
 					<div class="gtco-contact-info">
-						<h3>Happy Travelling!!</h3>
+						<h2>Happy Travelling!!</h2><br>
+						<h3>Quench the wanderlust in you!</h3>
+						<a href="/destination.html" class="btn btn-primary btn-sm">Explore Destinations</a>
+						<a href="/index.html" class="btn btn-primary btn-sm">Book a Flight</a>
+
 					</div>
 
 
