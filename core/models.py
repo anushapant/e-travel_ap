@@ -24,7 +24,6 @@ class FlightTicket(models.Model):
     image = models.ImageField(upload_to="airlines", blank=True)
 
 
-
     def __str__(self):
         return self.flight_no
 
