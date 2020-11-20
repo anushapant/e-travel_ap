@@ -46,6 +46,7 @@ class Flight_Booking_List(models.Model):
     booked = models.BooleanField(default=False)
     quantity = models.IntegerField(default=1, null=True)
 
+
     def __str__(self):
         return self.ticket.flight_no
 
