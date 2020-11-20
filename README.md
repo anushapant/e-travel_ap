@@ -15,5 +15,7 @@ Steps:
 
 # 
 All images in this website have been taken from https://unsplash.com/ .
+Information about destination cities has been taken from https://en.wikipedia.org/
+.
 
 In the process of making this project, we included the following templates:

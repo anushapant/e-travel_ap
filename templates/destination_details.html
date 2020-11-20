@@ -39,34 +39,19 @@
 			<div class="row">
 
 				<div class="col-lg-4 col-md-4 col-sm-6">
-					<a href="{% static 'images/rsz_new_york.jpg' %}" class="fh5co-card-item image-popup">
-						<figure>
-							<div class="overlay"><i class="ti-plus"></i></div>
-							<img src="{% static 'images/rsz_new_york.jpg' %}" alt="Image" class="img-responsive">
-						</figure>
-						<div class="fh5co-text">
-							<h2>New York, USA</h2>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia..</p>
-							<p><span class="btn btn-primary">More</span></p>
-						</div>
-					</a>
+					<h4>About</h4>
+					<p>{{object.about}}</p>
 				</div>
 
 				<div class="col-lg-4 col-md-4 col-sm-6">
-					<a href="{% static 'images/paris.jpg' %}" class="fh5co-card-item image-popup">
-						<figure>
-							<div class="overlay"><i class="ti-plus"></i></div>
-							<img src="{% static 'images/paris.jpg' %}" alt="Image" class="img-responsive">
-						</figure>
-						<div class="fh5co-text">
-							<h2>Paris, France</h2>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia..</p>
-							<p><span class="btn btn-primary">More</span></p>
-						</div>
-					</a>
+					<h4>Quote on the City</h4>
+					<p>{{object.quote}}</p>
 				</div>
 
-
+				<div class="col-lg-4 col-md-4 col-sm-6">
+					<h4>Places to Visit</h4>
+					<p>{{object.things_to_do}}</p>
+				</div>
 
 			</div>
 		</div>
