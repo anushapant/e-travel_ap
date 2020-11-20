@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, View
-from .models import FlightTicket, Flight_Booking_List, Transactions
+from .models import FlightTicket, Flight_Booking_List, Transactions, Destination
 from .forms import conformation_form, payment_form
 from django.utils import timezone
 from django.contrib import messages
@@ -20,7 +20,11 @@ def home_v(request):
     return render(request, "index.html")
 
 def destination(request):
-    return render(request, "destination.html")
+    object_list = Destination.objects.all()
+    content = {
+        'object_list':object_list
+    }
+    return render(request, "destination.html", content)
 
 def pricing(request):
     return render(request, "pricing.html")
@@ -64,7 +68,6 @@ def flights(request):
     else:
         return render(request, 'flights_results.html')
 
-
 def seats(request):
     return render(request, "seats.html")
 
@@ -93,6 +96,12 @@ def flight_details_V(request, slug):
     }
     return render(request, 'flight_details.html', content)
 
+def destination_details_V(request, slug):
+    destination = get_object_or_404(Destination, slug=slug)
+    content = {
+        'object': destination
+    }
+    return render(request, 'destination_details.html', content)
 
 @login_required
 def add_to_cart(request, slug):

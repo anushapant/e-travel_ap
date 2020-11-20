@@ -102,3 +102,17 @@ class Transactions(models.Model):
             if ticket.booked is False:
                 ticket.update_no_seats_fc()
                 ticket.save()
+
+
+class Destination(models.Model):
+    name = models.CharField(max_length=100)
+    image = models.ImageField(upload_to="destination", blank=True)
+    slug = models.SlugField(blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+    def get_abs_url(self):
+        return reverse("core:destination_details", kwargs={
+            'slug': self.slug
+        })
