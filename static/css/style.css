@@ -684,7 +684,7 @@ form label {
   margin-bottom: 0px;
   font-size: 59px;
   line-height: 1.5;
-  font-weight: 300;
+  font-weight: 500;
 }
 @media screen and (max-width: 768px) {
   #gtco-header .display-tc h1,

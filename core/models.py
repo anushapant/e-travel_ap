@@ -22,7 +22,7 @@ class FlightTicket(models.Model):
     price = models.FloatField()
     slug = models.SlugField(blank=True, null=True)
     image = models.ImageField(upload_to="airlines", blank=True)
-    
+
 
 
     def __str__(self):
