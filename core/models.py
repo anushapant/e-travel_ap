@@ -21,6 +21,8 @@ class FlightTicket(models.Model):
     first_class_seats = models.IntegerField(default=6)
     price = models.FloatField()
     slug = models.SlugField(blank=True, null=True)
+    image = models.ImageField(upload_to="airlines", blank=True)
+
 
     def __str__(self):
         return self.flight_no
@@ -45,7 +47,6 @@ class Flight_Booking_List(models.Model):
     ticket = models.ForeignKey(FlightTicket, on_delete=models.CASCADE)
     booked = models.BooleanField(default=False)
     quantity = models.IntegerField(default=1, null=True)
-
 
     def __str__(self):
         return self.ticket.flight_no

@@ -37,8 +37,11 @@
 				{% for flight in object_list %}
 					<div class="col-lg-12 col-md-4 col-sm-6">
 					<a class="fh5co-card-item ">
+
 						<div class="fh5co-text">
+
 							<h2 align="left">{{flight.flight_no}}, {{flight.airline}}</h2>
+							<img class="col-md-2" src="/media/{{ flight.image }}">
 							<p align="left">{{flight.date}}</p>
 							<p align="left">Departure: {{flight.start}}, {{flight.start_time}}  </p>
                             <p align="left"> To: {{flight.destination}}, {{flight.arrival_time}}</p>
@@ -46,6 +49,8 @@
 							<p align="right"><a class="btn btn-primary" href="{{flight.get_abs_url}}">Book</a></p>
 						</div>
 					</a>
+
+				<hr>
 				</div>
 				{% endfor %}
 				{% else %}
