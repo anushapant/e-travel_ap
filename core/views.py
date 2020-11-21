@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, View
 from .models import FlightTicket, Flight_Booking_List, Transactions, Destination
-from .forms import conformation_form, payment_form
+from .forms import confirmation_form, payment_form, confirmation_form2, round_tripF
 from django.utils import timezone
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
@@ -117,7 +117,8 @@ def add_to_cart(request, slug):
     if q.exists():
         ticket = q[0]
         ticket.tickets.add(orderItem)
-        return redirect("core:confirmation")
+
+        return redirect("core:confirmation2")
 
     else:
         order_date = timezone.now()
@@ -137,7 +138,7 @@ def is_valid_form(values):
 class confirmation(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
 
-        form = conformation_form()
+        form = confirmation_form()
         try:
             order = Transactions.objects.get(user=self.request.user, booked=False)
             context = {
@@ -151,7 +152,67 @@ class confirmation(LoginRequiredMixin, View):
             return redirect("/")
 
     def post(self, *args, **kwargs):
-        form = conformation_form(self.request.POST or None)
+        form = confirmation_form(self.request.POST or None)
+        try:
+            order = Transactions.objects.get(user=self.request.user, booked=False)
+
+            if form.is_valid():
+
+                first_name = form.cleaned_data.get('first_name')
+                last_name = form.cleaned_data.get('last_name')
+                number_of_seats = form.cleaned_data.get('number_of_seats')
+                seats_class = form.cleaned_data.get('seats_class')
+                round_trip = form.cleaned_data.get('round_trip')
+
+                if is_valid_form([first_name, last_name, number_of_seats, round_trip]):
+                    order.first_name = first_name
+                    order.last_name = last_name
+                    order.flight_seats(number_of_seats)
+                    order.seats_class = seats_class
+                    if order.seats_class == 'economy':
+                        order.update_seats()
+                    else:
+                        order.update_seats_fc()
+                    order.flight_booked()
+                    order.save()
+
+                else:
+                    messages.info(self.request, "Please fill in the required fields")
+
+                if round_trip == 'no':
+                    #messages.success(self.request, "Almost Done")
+                    return redirect('core:payment')
+
+                else:
+                    return redirect('core:round_trip')
+
+            messages.info(self.request, "Failed Checkout")
+            return redirect('core:home')
+
+        except ObjectDoesNotExist:
+            messages.error(self.request, "You do not have an active order")
+            return redirect("core:home")
+
+
+
+class confirmation2(LoginRequiredMixin, View):
+    def get(self, *args, **kwargs):
+
+        form = confirmation_form2()
+        try:
+            order = Transactions.objects.get(user=self.request.user, booked=False)
+            context = {
+                'object': order,
+                'form': form
+            }
+
+            return render(self.request, "details_confirmation.html", context)
+        except ObjectDoesNotExist:
+            messages.error(self.request, "You do not have an active order")
+            return redirect("/")
+
+    def post(self, *args, **kwargs):
+        form = confirmation_form2(self.request.POST or None)
         try:
             order = Transactions.objects.get(user=self.request.user, booked=False)
 
@@ -162,16 +223,21 @@ class confirmation(LoginRequiredMixin, View):
                 number_of_seats = form.cleaned_data.get('number_of_seats')
                 seats_class = form.cleaned_data.get('seats_class')
 
-                if is_valid_form([first_name, last_name, number_of_seats]):
+                if is_valid_form([first_name, last_name, number_of_seats, round_trip]):
                     order.first_name = first_name
                     order.last_name = last_name
                     order.flight_seats(number_of_seats)
                     order.seats_class = seats_class
+                    if order.seats_class == 'economy':
+                        order.update_seats()
+                    else:
+                        order.update_seats_fc()
+                    order.flight_booked()
                     order.save()
-
 
                 else:
                     messages.info(self.request, "Please fill in the required fields")
+
 
                 #messages.success(self.request, "Almost Done")
                 return redirect('core:payment')
@@ -182,6 +248,67 @@ class confirmation(LoginRequiredMixin, View):
         except ObjectDoesNotExist:
             messages.error(self.request, "You do not have an active order")
             return redirect("core:home")
+
+
+class round_trip(LoginRequiredMixin, View):
+    def get(self, *args, **kwargs):
+
+        form = round_tripF()
+        try:
+            order = Transactions.objects.get(user=self.request.user, booked=False)
+            context = {
+                'object': order,
+                'form': form
+            }
+
+            return render(self.request, "details_confirmation.html", context)
+        except ObjectDoesNotExist:
+            messages.error(self.request, "You do not have an active order")
+            return redirect("/")
+
+    def post(self, *args, **kwargs):
+        form = round_tripF(self.request.POST or None)
+        try:
+            order = Transactions.objects.get(user=self.request.user, booked=False)
+
+            if form.is_valid():
+
+                from_place = form.cleaned_data.get('from_place')
+                to_place = form.cleaned_data.get('to_place')
+                number_of_seats = form.cleaned_data.get('number_of_seats')
+                seats_class = form.cleaned_data.get('seats_class')
+                start_date = form.cleaned_data.get('date')
+
+                if is_valid_form([from_place, to_place, number_of_seats]):
+                    if seats_class == 'first':
+                        lookups = Q(start__icontains=from_place, destination__icontains=to_place, date=start_date,
+                                    first_class_seats__gte=number_of_seats)
+
+                    else:
+                        lookups = Q(start__icontains=from_place, destination__icontains=to_place, date=start_date,
+                                    number_seats_available__gte=number_of_seats)
+
+                    results = FlightTicket.objects.filter(lookups)
+                    context = {
+                        'object_list' : results
+                    }
+
+
+                else:
+                    messages.info(self.request, "Please fill in the required fields")
+
+
+                #messages.success(self.request, "Almost Done")
+                return render(self.request, 'flights_results.html', context)
+
+            messages.info(self.request, "Failed Checkout")
+            return redirect('core:home')
+
+        except ObjectDoesNotExist:
+            messages.error(self.request, "You do not have an active order")
+            return redirect("core:home")
+
+
 
 class payment_View(View):
     def get(self, *args, **kwargs):
@@ -208,11 +335,6 @@ class payment_View(View):
                 otp = form.cleaned_data.get('OTP')
 
                 if is_valid_form([card_no, otp]):
-                    if order.seats_class == 'economy':
-                        order.update_seats()
-                    else:
-                        order.update_seats_fc()
-                    order.flight_booked()
                     order.booked = True
                     order.save()
 
