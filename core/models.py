@@ -113,6 +113,7 @@ class Destination(models.Model):
     quote = models.CharField(max_length=500,blank=True, null=True)
     things_to_do = models.CharField(max_length=500,blank=True, null=True)
     slug = models.SlugField(blank=True, null=True)
+    map = models.ImageField(upload_to="destination", blank=True)
 
     def __str__(self):
         return self.name

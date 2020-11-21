@@ -33,25 +33,39 @@
 		<div class="gtco-container">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 text-center gtco-heading">
-					<h2>Information</h2>
-					</div>
+<!--					<h2>Information</h2>-->
+<!--					<h4>Quote on the City</h4>&ndash;&gt;-->
+					<h3 style="color: #09C6AB">{{object.quote}}</h3>
+				</div>
 			</div>
 			<div class="row">
 
-				<div class="col-lg-4 col-md-4 col-sm-6">
+				<div class="col-lg-6 col-md-6 col-sm-6">
 					<h4>About</h4>
 					<p>{{object.about}}</p>
-				</div>
-
-				<div class="col-lg-4 col-md-4 col-sm-6">
-					<h4>Quote on the City</h4>
-					<p>{{object.quote}}</p>
-				</div>
-
-				<div class="col-lg-4 col-md-4 col-sm-6">
+					<br>
 					<h4>Places to Visit</h4>
 					<p>{{object.things_to_do}}</p>
 				</div>
+
+				{% if object.name == 'Paris, France' %}
+				<div class="col-lg-6 col-md-6">
+					<div style="margin: 0 auto;">
+						<iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=France&t=&z=5&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+					</div>
+
+				</div>
+				{% endif %}
+
+<!--				<div class="col-lg-4 col-md-4 col-sm-6">-->
+<!--					<h4>Quote on the City</h4>-->
+<!--					<p>{{object.quote}}</p>-->
+<!--				</div>-->
+
+<!--				<div class="col-lg-4 col-md-4 col-sm-6">-->
+<!--					<h4>Places to Visit</h4>-->
+<!--					<p>{{object.things_to_do}}</p>-->
+<!--				</div>-->
 
 			</div>
 		</div>
