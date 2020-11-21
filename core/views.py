@@ -105,12 +105,21 @@ def destination_details_V(request, slug):
 
 @login_required
 def add_to_cart(request, slug):
-        flight = get_object_or_404(FlightTicket, slug=slug)
-        orderItem, created = Flight_Booking_List.objects.get_or_create(
+    flight = get_object_or_404(FlightTicket, slug=slug)
+    orderItem, created = Flight_Booking_List.objects.get_or_create(
             ticket=flight,
             user=request.user,
             booked=False
-        )
+    )
+
+    q = Transactions.objects.filter(user=request.user, booked=False)
+
+    if q.exists():
+        ticket = q[0]
+        ticket.tickets.add(orderItem)
+        return redirect("core:confirmation")
+
+    else:
         order_date = timezone.now()
         order = Transactions.objects.create(user=request.user, booked_date=order_date)
         order.tickets.add(orderItem)
