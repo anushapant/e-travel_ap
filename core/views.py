@@ -218,14 +218,10 @@ class confirmation2(LoginRequiredMixin, View):
 
             if form.is_valid():
 
-                first_name = form.cleaned_data.get('first_name')
-                last_name = form.cleaned_data.get('last_name')
                 number_of_seats = form.cleaned_data.get('number_of_seats')
                 seats_class = form.cleaned_data.get('seats_class')
 
-                if is_valid_form([first_name, last_name, number_of_seats, round_trip]):
-                    order.first_name = first_name
-                    order.last_name = last_name
+                if is_valid_form([number_of_seats, round_trip]):
                     order.flight_seats(number_of_seats)
                     order.seats_class = seats_class
                     if order.seats_class == 'economy':
@@ -261,7 +257,7 @@ class round_trip(LoginRequiredMixin, View):
                 'form': form
             }
 
-            return render(self.request, "details_confirmation.html", context)
+            return render(self.request, "round_trip_search.html", context)
         except ObjectDoesNotExist:
             messages.error(self.request, "You do not have an active order")
             return redirect("/")

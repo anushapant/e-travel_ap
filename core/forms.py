@@ -18,8 +18,6 @@ class confirmation_form(forms.Form):
     round_trip = forms.ChoiceField(choices=ROUND_TRIP,label='Would you also like to book a return flight?',widget=forms.RadioSelect)
 
 class confirmation_form2(forms.Form):
-    first_name = forms.CharField(label='First Name')
-    last_name = forms.CharField(label='Last Name')
     number_of_seats = forms.IntegerField(label='The number of seats you would like to book')
     seats_class = forms.ChoiceField(choices=CLASS_CHOICES, label='Class')
 
