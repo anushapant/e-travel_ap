@@ -48,14 +48,29 @@
 					<p>{{object.things_to_do}}</p>
 				</div>
 
-				{% if object.name == 'Paris, France' %}
+
 				<div class="col-lg-6 col-md-6">
 					<div style="margin: 0 auto;">
-						<iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=France&t=&z=5&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-					</div>
 
+						{% if object.name == 'Paris, France' %}
+						<iframe width="600" height="500" src="https://maps.google.com/maps?q=Paris%2C%20France&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+
+						{% elif object.name == 'New York, The United States' %}
+						<iframe width="600" height="500" src="https://maps.google.com/maps?q=New%20York%2C%20United%20States%20of%20America&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+
+						{% elif object.name == 'Seoul, South Korea' %}
+						<iframe width="600" height="500" src="https://maps.google.com/maps?q=Seoul%2C%20South%20Korea&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+
+						{% endif %}
+
+					</div>
 				</div>
-				{% endif %}
+
+<!--				<div class="mapouter">-->
+<!--					<div class="gmap_canvas">-->
+<!--						<iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=New%20York%2C%20United%20States%20of%20America&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>-->
+<!--					</div>-->
+<!--				</div>-->
 
 <!--				<div class="col-lg-4 col-md-4 col-sm-6">-->
 <!--					<h4>Quote on the City</h4>-->
