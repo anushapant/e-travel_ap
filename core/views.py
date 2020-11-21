@@ -103,6 +103,9 @@ def destination_details_V(request, slug):
     }
     return render(request, 'destination_details.html', content)
 
+def booking_confirmed(request):
+    return render(request, "booking_confirmed.html")
+
 @login_required
 def add_to_cart(request, slug):
     flight = get_object_or_404(FlightTicket, slug=slug)

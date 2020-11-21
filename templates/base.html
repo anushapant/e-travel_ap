@@ -94,7 +94,7 @@
 	</nav>
 
 
-    {% block content  %}
+
 		{% if messages %}
     <ul class="messages">
         {% for message in messages %}
@@ -107,6 +107,7 @@
         {% endfor %}
     </ul>
     {% endif %}
+		{% block content  %}
     {% endblock content %}
 
 		<footer id="gtco-footer" role="contentinfo">
