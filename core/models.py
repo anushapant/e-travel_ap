@@ -121,3 +121,4 @@ class Destination(models.Model):
         return reverse("core:destination_details", kwargs={
             'slug': self.slug
         })
+

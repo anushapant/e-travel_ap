@@ -340,8 +340,7 @@ class payment_View(View):
                 else:
                     messages.info(self.request, "Please fill in the required fields")
 
-                messages.success(self.request, "Congratulations!! You have successfully booked your flight!")
-                return redirect('core:home')
+                return redirect('core:booking_confirmed')
 
             messages.info(self.request, "Failed Checkout")
             return redirect('core:home')
