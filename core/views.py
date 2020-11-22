@@ -71,6 +71,9 @@ def flights(request):
 def seats(request):
     return render(request, "seats.html")
 
+def seats_new(request):
+    return render(request, "seats_new.html")
+
 def my_account(request):
     user = request.user.username
     content={

@@ -75,7 +75,7 @@ font-family: 'Roboto', sans-serif;
     padding: 30px 30px;
 }
 .main h2 {
-    color: #C3B400;
+    color: #09C6AB;
     font-size: 23px;
     text-align: center;
     margin-bottom: 30px;
@@ -117,7 +117,7 @@ p.copy_rights a:hover{
 .booking-details h3 {
     margin:27px 0px 8px 0;
     font-size: 14px;
-    color: #C3B400;
+    color: #09C6AB;
     font-size: 18px;
 	font-weight:600;
 }
@@ -168,7 +168,7 @@ span.seatCharts-legendDescription {
     display: block;
     margin: 10px 0;
     font-size: 16px;
-    background: #C3B400;
+    background: #09C6AB;
     border: none;
     color: #fff;
     padding: 11px 23px;
