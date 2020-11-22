@@ -269,18 +269,17 @@ input[type=text] {
   padding: 6px 6px;
   margin: 8px 0;
   box-sizing: border-box;
-  border: 2px solid #c295d8;
+  border: 2px solid #e7e7e7;
   border-radius: 4px;
   background-color: white;
   color: black;
 }
-
 input[type=message] {
   width: 80%;
   padding: 6px 6px;
   margin: 8px 0;
   box-sizing: border-box;
-  border: 2px solid #c295d8;
+  border: 2px solid #e7e7e7;
   border-radius: 4px;
   background-color: white;
   color: black;
