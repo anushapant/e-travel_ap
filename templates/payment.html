@@ -31,7 +31,7 @@
             <div class="checkout__form">
                 <div class="row">
                     <div class="col-lg-4">
-                        <h4>Payment</h4>
+                        <h4>Payment Details</h4>
                         <p>Please enter your Credit/Debit Card Number. An OTP will then be sent to the linked phone number.</p>
                             <form method="POST">
                                  {% csrf_token %}
@@ -70,7 +70,11 @@
                                         {% for order_item in object.tickets.all %}
                                         <tr>
                                             <th scope="row">{{ forloop.counter }}</th>
-                                            <td>{{ order_item.ticket.flight_no }}</td>
+                                            <td>
+                                                <div class="flight_name">
+                                                    {{ order_item.ticket.flight_no }}
+                                                </div>
+                                                {{ order_item.ticket.start }} - {{ order_item.ticket.destination }}</td>
 
                                             <td>
                                                 {{ order_item.quantity }}
@@ -138,9 +142,21 @@
 
                             <div class="checkout__order__costs">
                                 <ul>
-                                    <li>Additional Charge (Meals)*<span>
+                                    <li>Additional Charges (Meals)*<span>
 
                                             <b>${{ object.total_additional }}</b>
+
+
+                                        </span></li>
+
+                                </ul>
+                            </div>
+
+                            <div class="checkout__order__costs">
+                                <ul>
+                                    <li>Special Assistance Charges*<span>
+
+                                            <b>$0</b>
 
 
                                         </span></li>
@@ -162,7 +178,7 @@
                                 </ul>
                             </div>
                         </div>
-                        *Tax included
+                        *Inclusive of Taxes
                     </div>
                 </div>
             </div>

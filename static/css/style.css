@@ -761,6 +761,10 @@ form label {
   position: relative;
 }
 
+.flight_name{
+  color: #09C6AB;
+}
+
 @media screen and (max-width: 768px) {
   #gtco-features,
   #gtco-features-2,
