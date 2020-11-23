@@ -19,3 +19,4 @@ Information about destination cities has been taken from https://en.wikipedia.or
 .
 
 In the process of making this project, we included the following templates:
+https://www.free-css.com/free-css-templates/page247/traveler 
