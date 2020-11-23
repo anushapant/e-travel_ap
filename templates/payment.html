@@ -6,13 +6,32 @@
 
 {% block content  %}
 
+<header id="gtco-header" class="gtco-cover gtco-cover-sm" role="banner" style="background-image: url(/static/images/home_flight.jpg	)">
+		<div class="overlay"></div>
+		<div class="gtco-container">
+			<div class="row">
+				<div class="col-md-12 col-md-offset-0 text-center">
+					<div class="row row-mt-15em">
+
+						<div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
+							<h1>Payment</h1>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</header>
+
+<div class="gtco-section2">
 
     <section class="checkout spad">
         <div class="container">
             <div class="checkout__form">
                 <div class="row">
                     <div class="col-lg-4">
-                        <h5>Payment</h5>
+                        <h4>Payment</h4>
                         <p>Please enter your Credit/Debit Card Number. An OTP will then be sent to the linked phone number.</p>
                             <form method="POST">
                                  {% csrf_token %}
@@ -30,7 +49,7 @@
                     <!-- This section needs to have functionality for the AP Project-->
                     <div class="col-lg-8">
                         <div class="checkout__order">
-                            <h5>Your order</h5>
+                            <h4>Your order</h4>
                             <div class="checkout__order__product">
 
                                 <table class="table">
@@ -151,4 +170,5 @@
     </section>
     <!-- Checkout Section End -->
 
+</div>
 {% endblock content %}

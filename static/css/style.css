@@ -755,6 +755,12 @@ form label {
   position: relative;
 }
 
+.gtco-section2 {
+  padding: 10px;
+  clear: both;
+  position: relative;
+}
+
 @media screen and (max-width: 768px) {
   #gtco-features,
   #gtco-features-2,
