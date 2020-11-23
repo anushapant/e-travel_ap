@@ -25,15 +25,15 @@
 
 	<div class="gtco-section">
 		<div class="gtco-container">
-			<div class="col-lg-7">
+			<div class="col-lg-5">
                 <img class="col-md-2" src="/media/{{ object.image }}">
 				<h2>{{object.airline}}</h2><h5> {{object.flight_no}}</h5>
             <br>
-            <h4>{{object.start}}</h4>
+            <h4>{{object.start}}</h4><h5>{{object.start_time}}</h5>
                 <br><h5>TO</h5><br>
-            <h4>{{object.destination}}</h4>
+            <h4>{{object.destination}}</h4><h5>{{object.arrival_time}}</h5>
 			</div>
-            <div class="col-lg-5">
+            <div class="col-lg-7">
                         <div class="checkout__order">
                             <div class="checkout__order__product">
 
@@ -44,6 +44,8 @@
                                             <th scope="col">Flight Number</th>
 
                                             <th scope="col">Class</th>
+
+                                            <th scope="col">Seats Available</th>
 
                                             <th scope="col">Price per Ticket</th>
                                         </tr>
@@ -57,6 +59,10 @@
                                             <td>Economy</td>
 
                                             <td>
+                                                    {{ object.number_seats_available }}
+                                            </td>
+
+                                            <td>
                                                 ${{ object.price }}
                                             </td>
 
@@ -66,6 +72,10 @@
                                             <td></td>
 
                                             <td>First Class</td>
+
+                                            <td>
+                                                    {{ object.first_class_seats }}
+                                            </td>
 
                                             <td>
                                                 ${{ first_class_price}}
@@ -81,7 +91,7 @@
 
                             </div>
                             <div >
-                                <a class="btn btn-primary" href="{{ object.add_to_cart_url}}"> Proceed and Confirm</a>
+                               <center><a class="btn btn-primary" href="{{ object.add_to_cart_url}}"> Proceed and Confirm</a></center> 
                             </div>
                         </div>
                     </div>
