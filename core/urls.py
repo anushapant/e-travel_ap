@@ -1,5 +1,5 @@
 from django.urls import path 
-from .views import home_v, destination, contact,booking_confirmed, round_trip ,confirmation2,destination_details_V,flights, seats, seats_new, my_account, my_flights, flight_details_V, add_to_cart,confirmation, payment_View
+from .views import home_v, destination, contact,booking_confirmed,round_trip ,confirmation2,destination_details_V,flights, seats, seats_new, my_account, my_flights, flight_details_V, add_to_cart,confirmation, payment_View
 
 app_name = 'core'
 

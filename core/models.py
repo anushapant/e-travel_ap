@@ -131,6 +131,12 @@ class Transactions(models.Model):
                     ticket.seats_class = 'first'
                 ticket.save()
 
+    def update_additional(self, value, num):
+        for ticket in self.tickets.all():
+            if ticket.booked is False:
+                ticket.additional += value*num
+                ticket.save()
+
     def total_amount(self):
         total = 0
         for order_item in self.tickets.all():
@@ -154,7 +160,7 @@ class Transactions(models.Model):
         total = 0
         for order_item in self.tickets.all():
             total += order_item.amount_after_tax()
-
+        total += self.total_additional()
         return total
 
     def update_seats(self):

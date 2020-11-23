@@ -171,6 +171,7 @@ class confirmation(LoginRequiredMixin, View):
                 number_of_seats = form.cleaned_data.get('number_of_seats')
                 seats_class = form.cleaned_data.get('seats_class')
                 round_trip = form.cleaned_data.get('round_trip')
+                meal = form.cleaned_data.get('meals')
 
                 if is_valid_form([first_name, last_name, number_of_seats, round_trip]):
                     order.first_name = first_name
@@ -181,7 +182,13 @@ class confirmation(LoginRequiredMixin, View):
                         order.update_seats()
                     else:
                         order.update_seats_fc()
-                    order.class_update()
+
+                    if meal == 'veg':
+                        order.update_additional(10, number_of_seats)
+                    elif meal == 'non-veg':
+                        order.update_additional(12, number_of_seats)
+                    else:
+                        None
                     order.flight_booked()
                     order.save()
 
@@ -229,6 +236,7 @@ class confirmation2(LoginRequiredMixin, View):
 
                 number_of_seats = form.cleaned_data.get('number_of_seats')
                 seats_class = form.cleaned_data.get('seats_class')
+                meal = form.cleaned_data.get('meals')
 
                 if is_valid_form([number_of_seats, round_trip]):
                     order.flight_seats(number_of_seats)
@@ -237,6 +245,14 @@ class confirmation2(LoginRequiredMixin, View):
                         order.update_seats()
                     else:
                         order.update_seats_fc()
+
+                    if meal == 'veg':
+                        order.update_additional(10, number_of_seats)
+                    elif meal == 'non-veg':
+                        order.update_additional(12, number_of_seats)
+                    else:
+                        None
+
                     order.class_update()
                     order.flight_booked()
                     order.save()
@@ -357,3 +373,5 @@ class payment_View(View):
         except ObjectDoesNotExist:
             messages.error(self.request, "You do not have an active order")
             return redirect("core:home")
+
+

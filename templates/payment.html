@@ -36,7 +36,7 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th scope="col">#</th>
+                                            <th scope="col"></th>
                                             <th scope="col">Flight</th>
 
 
@@ -89,9 +89,9 @@
 
                             </div>
 
-                            <div class="checkout__order__total">
+                            <div class="checkout__order__costs">
                                 <ul>
-                                    <li><b>Total Price for Flights</b><span>
+                                    <li>Total Price for Flights<span>
                                             {% if object.total_amount %}
 
 
@@ -103,14 +103,26 @@
                                 </ul>
                             </div>
 
-                            <div class="checkout__order__total">
+                            <div class="checkout__order__costs">
                                 <ul>
-                                    <li><b>Total Tax Applicable</b><span>
+                                    <li>Total Tax Applicable<span>
                                             {% if object.tax %}
 
 
                                             <b>${{ object.tax }}</b>
                                             {% endif %}
+
+                                        </span></li>
+
+                                </ul>
+                            </div>
+
+                            <div class="checkout__order__costs">
+                                <ul>
+                                    <li>Additional Charge (Meals)*<span>
+
+                                            <b>${{ object.total_additional }}</b>
+
 
                                         </span></li>
 
@@ -130,13 +142,8 @@
 
                                 </ul>
                             </div>
-                            <div class="checkout__order__widget">
-                               <!--  <label>Currently, Travoyage only allows Cash On Delivery. Sorry for any inconvenience caused.</label> -->
-                            </div>
-
-
-                            <!-- <button type="submit" class="site-btn">Place oder </button> -->
                         </div>
+                        *Tax included
                     </div>
                 </div>
             </div>
