@@ -150,6 +150,11 @@ div.seatCharts-row {
 div.seatCharts-seat.available {
 	background-color: #969696;
 }
+
+div.seatCharts-seat.emergency-exit.available {
+    background-color: #9113bf;
+}
+
 div.seatCharts-seat.available.first-class {
 	background-color: #2483F7;
 }
