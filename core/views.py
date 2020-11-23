@@ -9,16 +9,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 
-def ticket_list(request):           #used instead of item_list
-    context={
-        'tickets': FlightTicket.objects.all()
-    }
-    return render(request, "ticket_list.html", context)
-
-
+# Home page
 def home_v(request):
     return render(request, "index.html")
 
+# Destinations page
 def destination(request):
     object_list = Destination.objects.all()
     content = {
@@ -26,12 +21,11 @@ def destination(request):
     }
     return render(request, "destination.html", content)
 
-def pricing(request):
-    return render(request, "pricing.html")
-
+# Contact Us page
 def contact(request):
     return render(request, "contact.html")
 
+# Flights search result page
 def flights(request):
     if request.method == 'GET':
         from_place = request.GET.get('from-place')
@@ -68,12 +62,14 @@ def flights(request):
     else:
         return render(request, 'flights_results.html')
 
+
 def seats(request):
     return render(request, "seats.html")
 
 def seats_new(request):
     return render(request, "seats_new.html")
 
+# My account page
 def my_account(request):
     user = request.user.username
     content={
@@ -81,6 +77,7 @@ def my_account(request):
     }
     return render(request, "my_account.html", content)
 
+# My flights page (list of flights the user has booked)
 def my_flights(request):
     user = request.user.username
     my_flight_list = Flight_Booking_List.objects.filter(user=request.user, booked=True)
@@ -90,6 +87,7 @@ def my_flights(request):
     }
     return render(request, "my_flights.html", content)
 
+# Page for Flight details
 def flight_details_V(request, slug):
     flight = get_object_or_404(FlightTicket, slug=slug)
     price = flight.first_class_price()
@@ -99,6 +97,7 @@ def flight_details_V(request, slug):
     }
     return render(request, 'flight_details.html', content)
 
+# Destination details page
 def destination_details_V(request, slug):
     destination = get_object_or_404(Destination, slug=slug)
     content = {
@@ -106,9 +105,11 @@ def destination_details_V(request, slug):
     }
     return render(request, 'destination_details.html', content)
 
+# Booking confirmed page, final step
 def booking_confirmed(request):
     return render(request, "booking_confirmed.html")
 
+# adding flights to the 'cart'
 @login_required
 def add_to_cart(request, slug):
     flight = get_object_or_404(FlightTicket, slug=slug)
@@ -141,6 +142,7 @@ def is_valid_form(values):
             valid = False
     return valid
 
+# Details confirmation
 class confirmation(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
 
@@ -200,7 +202,7 @@ class confirmation(LoginRequiredMixin, View):
             return redirect("core:home")
 
 
-
+# Details confirmation 2
 class confirmation2(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
 
@@ -252,6 +254,7 @@ class confirmation2(LoginRequiredMixin, View):
             return redirect("core:home")
 
 
+# Details confirmation for round trip/ return flight
 class round_trip(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
 
@@ -312,6 +315,7 @@ class round_trip(LoginRequiredMixin, View):
 
 
 
+# Payment page
 class payment_View(View):
     def get(self, *args, **kwargs):
         form = payment_form(self.request.POST or None)

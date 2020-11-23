@@ -1745,13 +1745,21 @@ form label {
   margin: 0 0 10px 0;
   color: #09C6AB;
 }
+
+.fh5co-card-item .fh5co-text h1 {
+  font-size: 40px;
+  font-weight: 400;
+  margin: 0 0 10px 0;
+  color: black;
+}
+
 .fh5co-card-item .fh5co-text span {
   color: #b3b3b3;
   font-size: 16px;
   font-weight: 400;
 }
 .fh5co-card-item .fh5co-text p {
-  color: #000;
+  color: #09C6AB;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;
