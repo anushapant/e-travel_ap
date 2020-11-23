@@ -25,6 +25,10 @@ def destination(request):
 def contact(request):
     return render(request, "contact.html")
 
+# Contact Us page
+def special_assistance(request):
+    return render(request, "special_assistance.html")
+
 # Flights search result page
 def flights(request):
     if request.method == 'GET':
