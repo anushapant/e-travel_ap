@@ -57,7 +57,10 @@ class Flight_Booking_List(models.Model):
         return self.additional
 
     def final_amount(self):
-        amount = (self.ticket.price * self.quantity)
+        if self.seats_class == 'first':
+            amount = (self.ticket.price * self.quantity)*1.10
+        else:
+            amount = (self.ticket.price * self.quantity)
         return amount
 
     def tax_percent(self):
@@ -68,7 +71,7 @@ class Flight_Booking_List(models.Model):
         return tax
 
     def tax(self):
-        amount = self.ticket.price * self.quantity
+        amount = self.final_amount()
         if self.seats_class == 'first':
             tax = 0.12*amount
         else:
@@ -76,7 +79,7 @@ class Flight_Booking_List(models.Model):
         return tax
 
     def amount_after_tax(self):
-        amount = self.ticket.price * self.quantity
+        amount = self.final_amount()
         if self.seats_class == 'first':
             amount += 0.12*amount
         else:
