@@ -93,6 +93,28 @@ class Transactions(models.Model):
             total += order_item.final_amount()
         return total
 
+    def tax(self):
+        total = 0
+        for order_item in self.tickets.all():
+            total += order_item.final_amount()
+        if self.seats_class == 'first':
+            tax = 0.12*total
+        else:
+            tax = 0.05*total
+
+        return tax
+
+    def total_amount_tax(self):
+        total = 0
+        for order_item in self.tickets.all():
+            total += order_item.final_amount()
+        if self.seats_class == 'first':
+            total += 0.12*total
+        else:
+            total += 0.05*total
+
+        return total
+
     def update_seats(self):
         for ticket in self.tickets.all():
             if ticket.booked is False:

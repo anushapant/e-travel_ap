@@ -55,6 +55,8 @@
                                             </td>
 
                                         </tr>
+
+
                                         {% empty %}
                                         <tr>
                                             <td colspan="5">Your cart is empty</td>
@@ -67,13 +69,42 @@
 
 
                             </div>
+
                             <div class="checkout__order__total">
                                 <ul>
-                                    <li><b>Order Total</b><span>
+                                    <li><b>Total Price for Flights</b><span>
                                             {% if object.total_amount %}
 
 
                                             <b>${{ object.total_amount }}</b>
+                                            {% endif %}
+
+                                        </span></li>
+
+                                </ul>
+                            </div>
+
+                            <div class="checkout__order__total">
+                                <ul>
+                                    <li><b>Tax Applicable</b><span>
+                                            {% if object.tax %}
+
+
+                                            <b>${{ object.tax }}</b>
+                                            {% endif %}
+
+                                        </span></li>
+
+                                </ul>
+                            </div>
+
+                             <div class="checkout__order__total">
+                                <ul>
+                                    <li><b>Total</b><span>
+                                            {% if object.total_amount_tax %}
+
+
+                                            <b>${{ object.total_amount_tax }}</b>
                                             {% endif %}
 
                                         </span></li>
