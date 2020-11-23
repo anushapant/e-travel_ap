@@ -21,14 +21,14 @@ class confirmation_form(forms.Form):
     last_name = forms.CharField(label='Last Name')
     number_of_seats = forms.IntegerField(label='The number of seats you would like to book')
     seats_class = forms.ChoiceField(choices=CLASS_CHOICES, label='Class')
-    meals = forms.ChoiceField(choices=MEAL, label='Would you also like to book an In-flight Meal? (Price/seat)',
+    meals = forms.ChoiceField(choices=MEAL, label='Would you also like to book an In-flight Meal? (Price/seat) ',
                               widget=forms.RadioSelect)
     round_trip = forms.ChoiceField(choices=ROUND_TRIP,label='Would you also like to book a return flight?',widget=forms.RadioSelect)
 
 class confirmation_form2(forms.Form):
     number_of_seats = forms.IntegerField(label='The number of seats you would like to book')
     seats_class = forms.ChoiceField(choices=CLASS_CHOICES, label='Class')
-    meals = forms.ChoiceField(choices=MEAL, label='Would you also like to book an In-flight Meal? (Price/seat)',
+    meals = forms.ChoiceField(choices=MEAL, label='Would you also like to book an In-flight Meal? (Price/seat) ',
                               widget=forms.RadioSelect)
 
 class round_tripF(forms.Form):
