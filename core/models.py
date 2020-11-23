@@ -48,12 +48,16 @@ class Flight_Booking_List(models.Model):
     booked = models.BooleanField(default=False)
     quantity = models.IntegerField(default=1, null=True)
     seats_class = models.CharField(max_length=100, blank=True, null=True)
+    additional = models.IntegerField(default=0, null=True)
 
     def __str__(self):
         return self.ticket.flight_no
 
+    def additional_charge(self):
+        return self.additional
+
     def final_amount(self):
-        amount = self.ticket.price * self.quantity
+        amount = (self.ticket.price * self.quantity)
         return amount
 
     def tax_percent(self):
@@ -131,6 +135,12 @@ class Transactions(models.Model):
         total = 0
         for order_item in self.tickets.all():
             total += order_item.final_amount()
+        return total
+
+    def total_additional(self):
+        total = 0
+        for order_item in self.tickets.all():
+            total += order_item.additional
         return total
 
     def tax(self):
