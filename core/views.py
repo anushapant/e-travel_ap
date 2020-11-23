@@ -254,6 +254,8 @@ class confirmation2(LoginRequiredMixin, View):
                         order.update_additional(10, number_of_seats)
                     elif meal == 'non-veg':
                         order.update_additional(12, number_of_seats)
+                    elif meal == 'fruit':
+                        order.update_additional(8, number_of_seats)
                     else:
                         None
 

@@ -11,9 +11,10 @@ ROUND_TRIP = (
 )
 
 MEAL = (
-    ("veg", "Vegetarian, $10"),
-    ("non-veg", "Non-Vegetarian, $12"),
-    ("no", "No")
+    ("veg", "Yes, a vegetarian meal - $10"),
+    ("non-veg", "Yes, a non-vegetarian meal - $12"),
+    ("fruit", "Yes, a fruit meal - $8"),
+    ("no", "No, I'm good")
 )
 
 class confirmation_form(forms.Form):
@@ -26,9 +27,9 @@ class confirmation_form(forms.Form):
     round_trip = forms.ChoiceField(choices=ROUND_TRIP,label='Would you also like to book a return flight?',widget=forms.RadioSelect)
 
 class confirmation_form2(forms.Form):
-    number_of_seats = forms.IntegerField(label='The number of seats you would like to book')
+    number_of_seats = forms.IntegerField(label='Please confirm the number of seats')
     seats_class = forms.ChoiceField(choices=CLASS_CHOICES, label='Class')
-    meals = forms.ChoiceField(choices=MEAL, label='Would you also like to book an In-flight Meal? (Price/seat) ',
+    meals = forms.ChoiceField(choices=MEAL, label='Would you like to book an in-flight meal? (Extra charges are mentioned below) ',
                               widget=forms.RadioSelect)
 
 class round_tripF(forms.Form):
