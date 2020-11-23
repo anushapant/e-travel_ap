@@ -17,7 +17,7 @@
                             <form method="POST">
                                  {% csrf_token %}
                                 {{ form|crispy }}
-                                
+
                                  <button class="btn btn-primary btn-lg" type="submit">Proceed</button>
                              </form>
                         <br>
@@ -41,6 +41,10 @@
 
 
                                             <th scope="col">Number of seats</th>
+                                            <th scope="col">Class</th>
+                                            <th scope="col">Total Cost</th>
+                                            <th scope="col">Tax %</th>
+                                            <th scope="col">Tax Amount</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -51,6 +55,22 @@
 
                                             <td>
                                                 {{ order_item.quantity }}
+                                            </td>
+
+                                            <td>
+                                                {{ order_item.class_display }}
+                                            </td>
+
+                                            <td>
+                                                {{ order_item.final_amount}}
+                                            </td>
+
+                                            <td>
+                                                {{ order_item.tax_percent}}%
+                                            </td>
+
+                                            <td>
+                                                {{ order_item.tax}}
                                             </td>
 
                                         </tr>
@@ -85,7 +105,7 @@
 
                             <div class="checkout__order__total">
                                 <ul>
-                                    <li><b>Tax Applicable</b><span>
+                                    <li><b>Total Tax Applicable</b><span>
                                             {% if object.tax %}
 
 

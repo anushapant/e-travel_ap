@@ -47,12 +47,36 @@ class Flight_Booking_List(models.Model):
     ticket = models.ForeignKey(FlightTicket, on_delete=models.CASCADE)
     booked = models.BooleanField(default=False)
     quantity = models.IntegerField(default=1, null=True)
+    seats_class = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self):
         return self.ticket.flight_no
 
     def final_amount(self):
         amount = self.ticket.price * self.quantity
+        return amount
+
+    def tax_percent(self):
+        if self.seats_class == 'first':
+            tax = 12
+        else:
+            tax = 5
+        return tax
+
+    def tax(self):
+        amount = self.ticket.price * self.quantity
+        if self.seats_class == 'first':
+            tax = 0.12*amount
+        else:
+            tax = 0.05*amount
+        return tax
+
+    def amount_after_tax(self):
+        amount = self.ticket.price * self.quantity
+        if self.seats_class == 'first':
+            amount += 0.12*amount
+        else:
+            amount += 0.05*amount
         return amount
 
     def update_no_seats(self):
@@ -62,6 +86,12 @@ class Flight_Booking_List(models.Model):
     def update_no_seats_fc(self):
         self.ticket.first_class_seats = self.ticket.first_class_seats - self.quantity
         self.ticket.save()
+
+    def class_display(self):
+        if self.seats_class == 'first':
+            return 'First Class'
+        else:
+            return 'Economy'
 
 class Transactions(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -87,6 +117,16 @@ class Transactions(models.Model):
                 ticket.booked = True
                 ticket.save()
 
+    def class_update(self):
+        for ticket in self.tickets.all():
+            seats_class = self.seats_class
+            if ticket.booked is False:
+                if seats_class == 'economy':
+                    ticket.seats_class = 'economy'
+                else:
+                    ticket.seats_class = 'first'
+                ticket.save()
+
     def total_amount(self):
         total = 0
         for order_item in self.tickets.all():
@@ -96,22 +136,14 @@ class Transactions(models.Model):
     def tax(self):
         total = 0
         for order_item in self.tickets.all():
-            total += order_item.final_amount()
-        if self.seats_class == 'first':
-            tax = 0.12*total
-        else:
-            tax = 0.05*total
+            total += order_item.tax()
 
-        return tax
+        return total
 
     def total_amount_tax(self):
         total = 0
         for order_item in self.tickets.all():
-            total += order_item.final_amount()
-        if self.seats_class == 'first':
-            total += 0.12*total
-        else:
-            total += 0.05*total
+            total += order_item.amount_after_tax()
 
         return total
 

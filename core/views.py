@@ -181,6 +181,7 @@ class confirmation(LoginRequiredMixin, View):
                         order.update_seats()
                     else:
                         order.update_seats_fc()
+                    order.class_update()
                     order.flight_booked()
                     order.save()
 
@@ -236,6 +237,7 @@ class confirmation2(LoginRequiredMixin, View):
                         order.update_seats()
                     else:
                         order.update_seats_fc()
+                    order.class_update()
                     order.flight_booked()
                     order.save()
 
