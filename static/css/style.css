@@ -761,6 +761,12 @@ form label {
   position: relative;
 }
 
+.gtco-section3 {
+  padding: 40px;
+  clear: both;
+  position: relative;
+}
+
 .flight_name{
   color: #09C6AB;
 }
@@ -896,6 +902,19 @@ form label {
 .gtco-heading {
   margin-bottom: 5em;
 }
+
+.m-class {
+  margin-bottom: 2em;
+}
+
+.sa-options{
+  margin-right: 10px;
+}
+
+.tabs-sa{
+  justify-content: center;
+}
+
 .gtco-heading.gtco-heading-sm {
   margin-bottom: 2em;
 }
