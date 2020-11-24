@@ -176,8 +176,11 @@ class confirmation(LoginRequiredMixin, View):
                 seats_class = form.cleaned_data.get('seats_class')
                 round_trip = form.cleaned_data.get('round_trip')
                 meal = form.cleaned_data.get('meals')
+                wheelchair = form.cleaned_data.get('wheelchair')
+                stroller = form.cleaned_data.get('stroller')
+                services = form.cleaned_data.get('services')
 
-                if is_valid_form([first_name, last_name, number_of_seats, round_trip]):
+                if is_valid_form([first_name, last_name, number_of_seats, round_trip, meal]):
                     order.first_name = first_name
                     order.last_name = last_name
                     order.flight_seats(number_of_seats)
@@ -241,6 +244,9 @@ class confirmation2(LoginRequiredMixin, View):
                 number_of_seats = form.cleaned_data.get('number_of_seats')
                 seats_class = form.cleaned_data.get('seats_class')
                 meal = form.cleaned_data.get('meals')
+                wheelchair = form.cleaned_data.get('wheelchair')
+                stroller = form.cleaned_data.get('stroller')
+                services = form.cleaned_data.get('services')
 
                 if is_valid_form([number_of_seats, round_trip]):
                     order.flight_seats(number_of_seats)
