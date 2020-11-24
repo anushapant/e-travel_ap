@@ -216,7 +216,7 @@ class confirmation(LoginRequiredMixin, View):
 
                 if round_trip == 'no':
                     #messages.success(self.request, "Almost Done")
-                    return redirect('core:payment')
+                    return redirect('core:discount')
 
                 else:
                     return redirect('core:round_trip')
@@ -297,7 +297,7 @@ class confirmation2(LoginRequiredMixin, View):
 
 
                 #messages.success(self.request, "Almost Done")
-                return redirect('core:payment')
+                return redirect('core:discount')
 
             messages.info(self.request, "Failed Checkout")
             return redirect('core:home')
@@ -414,7 +414,39 @@ class payment_View(View):
 class discount_View(View):
     def get(self, *args, **kwargs):
         form = discount_form(self.request.POST or None)
-        context = {
-            'form':form
-         }
-        return render(self.request, "discount.html", context)
+        try:
+            order = Transactions.objects.get(user=self.request.user, booked=False)
+            context = {
+                'object': order,
+                'form': form
+            }
+            return render(self.request, "discount.html", context)
+        except ObjectDoesNotExist:
+            messages.error(self.request, "You do not have an active order")
+            return redirect("/")
+
+    def post(self, *args, **kwargs):
+        form = discount_form(self.request.POST or None)
+        try:
+            order = Transactions.objects.get(user=self.request.user, booked=False)
+
+            if form.is_valid():
+
+                code = form.cleaned_data.get('code')
+
+                if code == 'DISCOUNT25':
+                    order.update_discount(25)
+
+                else:
+                    None
+
+                return redirect('core:payment')
+
+            messages.info(self.request, "Failed Checkout")
+            return redirect('core:home')
+
+        except ObjectDoesNotExist:
+            messages.error(self.request, "You do not have an active order")
+            return redirect("core:home")
+
+

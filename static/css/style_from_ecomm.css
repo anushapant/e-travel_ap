@@ -204,6 +204,24 @@
 	margin-bottom: 0px;
 }
 
+.checkout__order__total ul li span{
+	list-style: none;
+	font-size: 20px;
+	color: red;
+	font-weight: 600;
+	overflow: hidden;
+	line-height: 40px;
+}
+
+.checkout__order__total p {
+	list-style: none;
+	font-size: 20px;
+	color: #red;
+	font-weight: 600;
+	overflow: hidden;
+	line-height: 40px;
+}
+
 .checkout__order__total ul li {
 	list-style: none;
 	font-size: 20px;

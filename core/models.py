@@ -110,6 +110,7 @@ class Transactions(models.Model):
     booked_date = models.DateTimeField()                    #used instead of ordered_date
     booked = models.BooleanField(default=False)             #used instead of ordered
     seats_class = models.CharField(max_length = 100,blank=True, null=True)
+    discount_val = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return self.user.username
@@ -167,6 +168,21 @@ class Transactions(models.Model):
             total += order_item.amount_after_tax()
         total += self.total_additional()
         return total
+
+    def update_discount(self, value):
+        self.discount_val = value
+        self.save()
+
+
+    def discount(self):
+        discount_val = 1 - self.discount_val/100
+        total = 0
+        for order_item in self.tickets.all():
+            total += order_item.amount_after_tax()
+        total += self.total_additional()
+        total = total * discount_val
+        return total
+
 
     def update_seats(self):
         for ticket in self.tickets.all():

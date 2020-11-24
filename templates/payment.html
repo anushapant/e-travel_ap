@@ -142,7 +142,7 @@
 
                             <div class="checkout__order__costs">
                                 <ul>
-                                    <li>Additional Charges (Meals)*<span>
+                                    <li>Additional Charges (Meals, Special Assistance, Lounge)*<span>
 
                                             <b>${{ object.total_additional }}</b>
 
@@ -152,20 +152,50 @@
                                 </ul>
                             </div>
 
+                            {% if object.discount_val %}
 
-                             <div class="checkout__order__total">
+                            <div class="checkout__order__costs">
                                 <ul>
-                                    <li><b>Total</b><span>
-                                            {% if object.total_amount_tax %}
-
+                                    <li>Total before discount<span>
 
                                             <b>${{ object.total_amount_tax }}</b>
-                                            {% endif %}
+
 
                                         </span></li>
 
                                 </ul>
                             </div>
+
+                             <div class="checkout__order__total">
+                                <ul>
+                                    <li><b>Total</b><span>
+
+
+
+                                        <b>${{ object.discount }}</b>
+
+
+                                        </span></li>
+
+                                </ul>
+                            </div>
+
+                            {% else %}
+
+                            <div class="checkout__order__total">
+                                <ul>
+                                    <li>Total<span>
+
+                                            <b>${{ object.total_amount_tax }}</b>
+
+
+                                        </span></li>
+
+                                </ul>
+                            </div>
+
+                            {% endif %}
+
                         </div>
                         *Inclusive of Taxes
                     </div>
