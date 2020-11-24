@@ -70,6 +70,9 @@ class round_tripF(forms.Form):
     number_of_seats = forms.IntegerField(label='The number of seats you would like to book')
     seats_class = forms.ChoiceField(choices=CLASS_CHOICES, label='Class')
 
+class discount_form(forms.Form):
+    code = forms.CharField(label='Enter a discount code to redeem it.')
+
 class payment_form(forms.Form):
     Card_Number = forms.CharField(label='Card Number', widget=forms.TextInput(attrs={'placeholder': 'xxxx-xxxx-xxxx-xxxx'}))
     OTP = forms.CharField(label='OTP')

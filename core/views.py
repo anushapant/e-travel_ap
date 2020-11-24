@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, View
 from .models import FlightTicket, Flight_Booking_List, Transactions, Destination
-from .forms import confirmation_form, payment_form, confirmation_form2, round_tripF
+from .forms import confirmation_form, payment_form, confirmation_form2, round_tripF, discount_form
 from django.utils import timezone
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
@@ -410,3 +410,11 @@ class payment_View(View):
             return redirect("core:home")
 
 
+# Discount page
+class discount_View(View):
+    def get(self, *args, **kwargs):
+        form = discount_form(self.request.POST or None)
+        context = {
+            'form':form
+         }
+        return render(self.request, "discount.html", context)

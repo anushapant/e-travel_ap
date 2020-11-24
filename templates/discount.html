@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags  %}
+<head>
+    <title>{% block head_title %}Payment{% endblock %}</title>
+</head>
+
+{% block content  %}
+
+<header id="gtco-header" class="gtco-cover gtco-cover-sm" role="banner" style="background-image: url(/static/images/home_flight.jpg	)">
+		<div class="overlay"></div>
+		<div class="gtco-container">
+			<div class="row">
+				<div class="col-md-12 col-md-offset-0 text-center">
+					<div class="row row-mt-15em">
+
+						<div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
+							<h1>Payment</h1>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</header>
+
+<div class="gtco-section2">
+
+    <section class="checkout spad">
+        <div class="container">
+            <div class="checkout__form">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <h4>Discounts and Promo Codes</h4>
+                        <p>Travoyage offers Armed Forces Concessions. Please upload your documents to avail this.</p>
+                            <form method="POST">
+                                <button class="btn btn-primary btn-lg" type="submit">Upload now</button>
+                                <br>
+                                <center><hr>OR<hr></center>
+                                 {% csrf_token %}
+                                {{ form|crispy }}
+
+                                 <button class="btn btn-primary btn-lg" type="submit">Proceed</button>
+                             </form>
+                        <br>
+                        <p></p>
+                        <br>
+
+                    </div>
+
+
+                    <!-- This section needs to have functionality for the AP Project-->
+                    <div class="col-lg-9">
+                        <div class="checkout__order">
+                            <h4>Your order</h4>
+                            <div class="checkout__order__product">
+
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col"></th>
+                                            <th scope="col">Flight</th>
+
+
+                                            <th scope="col">Number of seats</th>
+                                            <th scope="col">Class   </th>
+                                            <th scope="col">Total Cost</th>
+                                            <th scope="col">Tax %</th>
+                                            <th scope="col">Tax Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for order_item in object.tickets.all %}
+                                        <tr>
+                                            <th scope="row">{{ forloop.counter }}</th>
+                                            <td>
+                                                <div class="flight_name">
+                                                    {{ order_item.ticket.flight_no }}
+                                                </div>
+                                                {{ order_item.ticket.start }} - {{ order_item.ticket.destination }}</td>
+
+                                            <td>
+                                                {{ order_item.quantity }}
+                                            </td>
+
+                                            <td>
+                                                {{ order_item.class_display }}
+                                            </td>
+
+                                            <td>
+                                                {{ order_item.final_amount}}
+                                            </td>
+
+                                            <td>
+                                                {{ order_item.tax_percent}}%
+                                            </td>
+
+                                            <td>
+                                                {{ order_item.tax}}
+                                            </td>
+
+                                        </tr>
+
+
+                                        {% empty %}
+                                        <tr>
+                                            <td colspan="5">Your cart is empty</td>
+                                        </tr>
+                                        <tr>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+
+
+                            </div>
+
+                            <div class="checkout__order__costs">
+                                <ul>
+                                    <li>Total Price for Flights<span>
+                                            {% if object.total_amount %}
+
+
+                                            <b>${{ object.total_amount }}</b>
+                                            {% endif %}
+
+                                        </span></li>
+
+                                </ul>
+                            </div>
+
+                            <div class="checkout__order__costs">
+                                <ul>
+                                    <li>Total Tax Applicable<span>
+                                            {% if object.tax %}
+
+
+                                            <b>${{ object.tax }}</b>
+                                            {% endif %}
+
+                                        </span></li>
+
+                                </ul>
+                            </div>
+
+                            <div class="checkout__order__costs">
+                                <ul>
+                                    <li>Additional Charges (Meals)*<span>
+
+                                            <b>${{ object.total_additional }}</b>
+
+
+                                        </span></li>
+
+                                </ul>
+                            </div>
+
+
+                             <div class="checkout__order__total">
+                                <ul>
+                                    <li><b>Total</b><span>
+                                            {% if object.total_amount_tax %}
+
+
+                                            <b>${{ object.total_amount_tax }}</b>
+                                            {% endif %}
+
+                                        </span></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        *Inclusive of Taxes
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Checkout Section End -->
+
+</div>
+{% endblock content %}
