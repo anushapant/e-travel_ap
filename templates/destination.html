@@ -34,37 +34,43 @@
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 text-center gtco-heading">
 					<h2>Popular Destinations</h2>
-					<p>Want to go somewhere, but don't know where to go? We understand! Given below are some of the most popular destinations. Check them out and go book your flight ASAP!</p>
+					<p>Want to go somewhere, but don't know where to go? We understand!Check out our most popular destinations and book your flight ASAP!</p>
 				</div>
 			</div>
 			<div class="row">
 
 
 				{% for item in object_list %}
-                        <div class="col-lg-4 col-md-4 col-sm-6">
-							<a href="/media/{{ item.image }}" class="fh5co-card-item image-popup">
-								<figure>
-									<div class="overlay"><i class="ti-plus"></i></div>
-									<img src="/media/{{ item.image }}" alt="Image" class="img-responsive">
-							</figure></a>
-                            <div class="product__item__pic set-bg" data-setbg="/media/{{ item.image }}">
-                            </div>
-                            <div class="product__item__text">
+				<div class="col-lg-4 col-md-4 col-sm-6">
+					<div class="card">
 
-                            </div>
-							<div class="fh5co-text">
+						<a href="/media/{{ item.image }}">
+<!--							<a href="/media/{{ item.image }}" class="fh5co-card-item image-popup">-->
+							<figure>
+								<!--									<div class="overlay"><i class="ti-plus"></i></div>-->
+								<img src="/media/{{ item.image }}" alt="Image" class="img-responsive">
+							</figure></a>
+						<!--                            <div class="product__item__pic set-bg" data-setbg="/media/{{ item.image }}">-->
+						<!--                            </div>-->
+						<!--                            <div class="product__item__text">-->
+
+						<!--                            </div>-->
+						<div class="card-body">
+							<div class="fh5co-text card-title">
 								<center><h3>{{item.name}}</h3></center>
-						</div>
+								<center><p class="card-text">{{item.things_to_do}}</p></center>
+							</div>
 							<center> <a href="{{item.get_abs_url}}"><span class="btn btn-primary">More</span></a></center>
 							<br>
-                        </div>
 
-                        {% endfor %}
+						</div>
+					</div>
+				</div>
 
+				{% endfor %}
 			</div>
 		</div>
-	</div>
-	
+
 
 
 	</div>
