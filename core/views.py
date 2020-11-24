@@ -432,10 +432,15 @@ class discount_View(View):
 
             if form.is_valid():
 
+                defence = form.cleaned_data.get('defence')
+
                 code = form.cleaned_data.get('code')
 
-                if code == 'DISCOUNT25':
+                if defence == 'yes':
                     order.update_discount(25)
+
+                elif code == 'DISCOUNT10':
+                    order.update_discount(10)
 
                 else:
                     None

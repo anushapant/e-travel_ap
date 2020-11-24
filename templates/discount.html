@@ -32,11 +32,9 @@
                 <div class="row">
                     <div class="col-lg-3">
                         <h4>Discounts and Promo Codes</h4>
-                        <p>Travoyage offers Armed Forces Concessions. Please upload your documents to avail this.</p>
+                        <p>Travoyage offers Armed Forces Concessions. Please select yes if applicable. Otherwise, enter a discount code if you have one.</p>
                             <form method="POST">
-                                <button class="btn btn-primary btn-lg" type="submit">Upload now</button>
-                                <br>
-                                <center><hr>OR<hr></center>
+
                                  {% csrf_token %}
                                 {{ form|crispy }}
 
