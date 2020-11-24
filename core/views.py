@@ -25,7 +25,11 @@ def destination(request):
 def contact(request):
     return render(request, "contact.html")
 
-# Contact Us page
+# Lounge page
+def lounge(request):
+    return render(request, "lounge.html")
+
+# Special Assistance page
 def special_assistance(request):
     return render(request, "special_assistance.html")
 

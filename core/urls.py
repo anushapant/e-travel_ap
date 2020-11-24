@@ -1,5 +1,5 @@
 from django.urls import path 
-from .views import home_v, destination, contact,booking_confirmed,round_trip ,confirmation2,destination_details_V,flights,discount_View ,seats, seats_new, my_account, special_assistance, my_flights, flight_details_V, add_to_cart,confirmation, payment_View
+from .views import home_v, destination, contact,booking_confirmed,round_trip ,confirmation2,destination_details_V,flights,discount_View ,seats, seats_new, my_account, lounge, special_assistance, my_flights, flight_details_V, add_to_cart,confirmation, payment_View
 
 app_name = 'core'
 
@@ -10,6 +10,7 @@ urlpatterns= [
     path('contact.html', contact, name='contact'),
     path('flights_results.html', flights , name='flights'),
     path('seats.html', seats, name='seats'),
+    path('lounge.html', lounge, name='lounge'),
     path('special_assistance.html', special_assistance, name='special_assistance'),
     path('seats_new.html', seats_new, name='seats_new'),
     path('flight_details/<slug>/', flight_details_V, name='flight_details'),
