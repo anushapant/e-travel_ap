@@ -462,6 +462,16 @@ border: 2px solid #c295d8;
   float: left;
   width: 100%;
 }
+
+.gtco-cover2 {
+  height: 1600px;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: relative;
+  float: left;
+  width: 100%;
+}
 .gtco-cover a {
   color: #09C6AB;
 }
