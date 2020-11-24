@@ -22,7 +22,7 @@ MEAL = (
 
 SPECIAL_SERVICES = (
     ("exp_mother", "Expectant Mother"),
-    ("um", "Unaccompanied Minor(s)"),
+    ("um", "Unaccompanied Minor(s) -$25  (Overall cost remains the same even for more than 1 minor) "),
 )
 
 
@@ -40,6 +40,9 @@ class confirmation_form(forms.Form):
     services = forms.ChoiceField(choices=SPECIAL_SERVICES,
                               label='Would you like assistance for any of the following?',
                               widget=forms.RadioSelect, required=False)
+    lounge = forms.ChoiceField(choices=ROUND_TRIP,
+                                 label='Would you like access to the Travoyage Lounge? (An additional $10 per head for non-first class tickets)',
+                                 widget=forms.RadioSelect)
     round_trip = forms.ChoiceField(choices=ROUND_TRIP,label='Would you also like to book a return flight?',widget=forms.RadioSelect)
 
 class confirmation_form2(forms.Form):
@@ -55,6 +58,9 @@ class confirmation_form2(forms.Form):
     services = forms.ChoiceField(choices=SPECIAL_SERVICES,
                                  label='Would you like assistance for any of the following?',
                                  widget=forms.RadioSelect, required=False)
+    lounge = forms.ChoiceField(choices=ROUND_TRIP,
+                                 label='Would you like access to the Travoyage Lounge? (An additional $10 per head for non-first class tickets)',
+                                 widget=forms.RadioSelect)
 
 
 class round_tripF(forms.Form):

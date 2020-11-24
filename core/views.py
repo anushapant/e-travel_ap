@@ -179,6 +179,7 @@ class confirmation(LoginRequiredMixin, View):
                 wheelchair = form.cleaned_data.get('wheelchair')
                 stroller = form.cleaned_data.get('stroller')
                 services = form.cleaned_data.get('services')
+                lounge = form.cleaned_data.get('lounge')
 
                 if is_valid_form([first_name, last_name, number_of_seats, round_trip, meal]):
                     order.first_name = first_name
@@ -196,6 +197,17 @@ class confirmation(LoginRequiredMixin, View):
                         order.update_additional(12, number_of_seats)
                     else:
                         None
+
+                    if services == 'um':
+                        order.update_additional(25, 1)
+
+                    if lounge == 'yes':
+                        if seats_class == 'economy':
+                            order.update_additional(10, number_of_seats)
+                        else:
+                            #No additional charge if your ticket is a first class one
+                            None
+
                     order.flight_booked()
                     order.save()
 
@@ -247,6 +259,7 @@ class confirmation2(LoginRequiredMixin, View):
                 wheelchair = form.cleaned_data.get('wheelchair')
                 stroller = form.cleaned_data.get('stroller')
                 services = form.cleaned_data.get('services')
+                lounge = form.cleaned_data.get('lounge')
 
                 if is_valid_form([number_of_seats, round_trip]):
                     order.flight_seats(number_of_seats)
@@ -264,6 +277,16 @@ class confirmation2(LoginRequiredMixin, View):
                         order.update_additional(8, number_of_seats)
                     else:
                         None
+
+                    if services == 'um':
+                        order.update_additional(25, 1)
+
+                    if lounge == 'yes':
+                        if seats_class == 'economy':
+                            order.update_additional(10, number_of_seats)
+                        else:
+                            # No additional charge if your ticket is a first class one
+                            None
 
                     order.class_update()
                     order.flight_booked()
