@@ -27,11 +27,12 @@
 		<div class="gtco-container">
 			<div class="col-lg-5">
                 <img class="col-md-2" src="/media/{{ object.image }}">
-				<h2>{{object.airline}}</h2><h5> {{object.flight_no}}</h5>
+				<h2>{{object.airline}} - {{object.flight_no}}</h2>
+<!--                <h5> {{object.flight_no}}</h5>-->
             <br>
-            <h4>{{object.start}} &emsp;  {{object.start_code}} </h4><h5>{{object.start_time}}</h5>
-                <br><h5>TO</h5><br>
-            <h4>{{object.destination}} &emsp; {{object.destination_code}} </h4><h5>{{object.arrival_time}}</h5>
+            <h3 style="color: #09C6AB;" >{{object.start}} &emsp; ({{object.start_code}})</h3><h5>{{object.start_time}}</h5>
+                <h5>TO</h5>
+            <h3 style="color: #09C6AB;">{{object.destination}} &emsp; ({{object.destination_code}}) </h3><h5>{{object.arrival_time}}</h5>
 			</div>
             <div class="col-lg-7">
                         <div class="checkout__order">
