@@ -103,7 +103,9 @@ def flight_details_V(request, slug):
     from_place = flight.start
     to_place = flight.destination
 
-    cheaper = FlightTicket.objects.filter(start__icontains=from_place, destination__icontains=to_place, price__lt=flight_price)
+    # To ensure a flight with a date before today/when the user clicks here does not show up in the cheaper flights section
+    current_date = timezone.now().date()
+    cheaper = FlightTicket.objects.filter(start__icontains=from_place, destination__icontains=to_place, price__lt=flight_price, date__gte= current_date )
 
     content = {
         'object': flight,
