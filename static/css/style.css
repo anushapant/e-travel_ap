@@ -25,9 +25,8 @@ body {
 }
 
 .feature-icon {
-  display: inline-block;
-  width: 1.5em;
-  margin-right: 4px;
+  color: #09C6AB;
+  margin-right: 12px;
 }
 
 .card{
