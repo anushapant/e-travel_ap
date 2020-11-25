@@ -110,19 +110,24 @@
             <center><p>Travoyage ensures that you choose the best option for yourself.</p></center>
                 <h4>Cheaper flight(s) from {{object.start}} to {{object.destination}}:</h4>
             {% for flight in cheaper_flights %}
-                    <a class="fh5co-card-item " href="{{flight.get_abs_url}}">
+                    <a class="fh5co-card-item flight-padding" href="{{flight.get_abs_url}}">
+<!--						<div class="fh5co-text">-->
 
-						<div class="fh5co-text">
+						<div class="col-lg-6 col-md-2 col-sm-3" >
 
-							<h4 align="left">{{flight.flight_no}}, {{flight.airline}}</h4>
-							<img class="col-md-2" src="/media/{{ flight.image }}">
+							<h2 align="left" style="color: #09C6AB;">{{flight.flight_no}}, {{flight.airline}}</h2>
+							<center><img class="col-md-4" src="/media/{{ flight.image }}"></center>
+						</div>
+						<div class="col-lg-6 col-md-2 col-sm-3" style="color: black;">
 							<p align="left">{{flight.date}}</p>
 							<p align="left">🛫  Departure: {{flight.start}}, {{flight.start_time}}  </p>
                             <p align="left">🛬   To: {{flight.destination}}, {{flight.arrival_time}}</p>
 							<p align="left">Flight Duration: {{flight.duration_hr}} hours {{flight.duration_min}} minutes</p>
-							<p align="right"><span class="btn btn-primary" >Book</span></p>
+							<p align="right"><span class="btn btn-primary" >Click to Book</span></p>
 						</div>
+
 					</a>
+
             {% endfor %}
 
         </div>
