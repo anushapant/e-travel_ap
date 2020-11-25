@@ -14,7 +14,7 @@ Steps:
 5. We have created a dummy user, with username:user and password:user1234. However, you can create a new account as well.
 
 # 
-All images in this website have been taken from https://unsplash.com/.
+All images in this website have been taken from https://unsplash.com/ or https://www.pexels.com/ .
 
 Information about destination cities has been taken from https://en.wikipedia.org/
 
