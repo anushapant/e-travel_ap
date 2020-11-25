@@ -48,6 +48,7 @@ class Flight_Booking_List(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     ticket = models.ForeignKey(FlightTicket, on_delete=models.CASCADE)
     booked = models.BooleanField(default=False)
+    last_booked = models.BooleanField(default=False)
     quantity = models.IntegerField(default=1, null=True)
     seats_class = models.CharField(max_length=100, blank=True, null=True)
     additional = models.IntegerField(default=0, null=True)
@@ -125,6 +126,7 @@ class Transactions(models.Model):
         for ticket in self.tickets.all():
             if ticket.booked is False:
                 ticket.booked = True
+                ticket.last_booked = True
                 ticket.save()
 
     def class_update(self):

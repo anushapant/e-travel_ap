@@ -115,18 +115,12 @@ def destination_details_V(request, slug):
 
 # Booking confirmed page, final step
 def booking_confirmed(request):
-    list = Flight_Booking_List.objects.filter(user=request.user, booked=True)
+    list = Flight_Booking_List.objects.filter(user=request.user, last_booked=True)
     context = {
         'list': list
     }
     return render(request, "booking_confirmed.html", context)
 
-def ticket(request):
-    list = Flight_Booking_List.objects.filter(user=request.user, booked=True)
-    context ={
-        'list': list
-    }
-    return render(request, "dummy_ticket.html", context)
 
 # adding flights to the 'cart'
 @login_required
@@ -183,6 +177,8 @@ class confirmation(LoginRequiredMixin, View):
         try:
             order = Transactions.objects.get(user=self.request.user, booked=False)
 
+
+
             if form.is_valid():
 
                 first_name = form.cleaned_data.get('first_name')
@@ -225,6 +221,14 @@ class confirmation(LoginRequiredMixin, View):
                             #No additional charge if your ticket is a first class one
                             None
 
+                    prev_booked = Flight_Booking_List.objects.filter(user=self.request.user, last_booked=True)
+
+                    if prev_booked.exists():
+                        for flight in prev_booked:
+                            flight.last_booked = False
+                            flight.save()
+
+                    order.class_update()
                     order.flight_booked()
                     order.save()
 
@@ -304,6 +308,12 @@ class confirmation2(LoginRequiredMixin, View):
                         else:
                             # No additional charge if your ticket is a first class one
                             None
+
+                    prev_booked = Flight_Booking_List.objects.filter(user=self.request.user, last_booked=True)
+
+                    if prev_booked.exists():
+                        for flight in prev_booked:
+                            flight.last_booked = False
 
                     order.class_update()
                     order.flight_booked()

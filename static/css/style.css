@@ -1957,7 +1957,8 @@ section, .container, .container-fluid {
 .booking {
  border-top: 1px solid #09C6AB;
  padding-top: 10px;
- border-bottom 1px solid black;
+ border-bottom: 1px solid #09C6AB;
+ padding-top: 5px;
 }
 
 .booking h4{
@@ -1967,12 +1968,15 @@ section, .container, .container-fluid {
 
 
 }
-
+.booking_b{
+    margin-top: 10px;
+}
 .booking p{
     color: #09C6AB;
    font-size: 18px;
     font-weight: 400;
 }
+
 
 @media screen and (max-width: 768px) {
   .macbook-wrap img {

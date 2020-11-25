@@ -129,12 +129,16 @@
 																<p class="alignleft">Departure: {{flight.ticket.start}}, {{flight.ticket.start_time}}  </p>
                             									<p class="alignright"> To: {{flight.ticket.destination}}, {{flight.ticket.arrival_time}}</p>
 																<div style="clear: both;"></div>
+																Number of Seats: <b>{{flight.quantity}}</b>,
+																Class: <b>{{flight.class_display}}</b>
 															</div>
 															</div>
-														<hr>
 													{% endfor %}
 
-												<center><a href="/"><span class="btn btn-primary">Done!</span></a></center>
+												<br>
+												<br>
+												<p></p>
+												<center><a href="#"><span class="btn btn-primary booking_b">Print</span></a><a href="/"><span class="btn btn-primary booking_b">Done!</span></a></center>
 											</div>
 										</div>
 
