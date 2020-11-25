@@ -1972,7 +1972,8 @@ section, .container, .container-fluid {
  border-top: 1px solid #09C6AB;
  padding-top: 10px;
  border-bottom: 1px solid #09C6AB;
- padding-top: 5px;
+ padding-top: 1em;
+ padding-bottom: 1em;
 }
 
 .booking h4{

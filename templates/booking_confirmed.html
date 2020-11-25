@@ -126,18 +126,16 @@
 
 																<h4 align="left">{{flight.ticket.flight_no}}, {{flight.ticket.airline}}</h4>
 																<h4 align="left">{{flight.ticket.date}}</h4>
-																<p class="alignleft">🛫  Departure: {{flight.ticket.start}}, {{flight.ticket.start_time}}  </p>
-                            									<p class="alignright">🛬   To: {{flight.ticket.destination}}, {{flight.ticket.arrival_time}}</p>
+																<p class="alignleft">🛫  From: {{flight.ticket.start}}, {{flight.ticket.start_time}}  </p>
+                            									<p class="alignright" style="padding-right: 1em;">🛬  To: {{flight.ticket.destination}}, {{flight.ticket.arrival_time}}</p>
 																<div style="clear: both;"></div>
-																Number of Seats: <b>{{flight.quantity}}</b>,
+																Number of Seats: <b>{{flight.quantity}}</b>, &emsp;
 																Class: <b>{{flight.class_display}}</b>
 															</div>
 															</div>
 													{% endfor %}
 
-												<br>
-												<br>
-												<p></p>
+
 												<center><a href="#"><span class="btn btn-primary booking_b">Print</span></a><a href="/"><span class="btn btn-primary booking_b">Done!</span></a></center>
 											</div>
 										</div>
