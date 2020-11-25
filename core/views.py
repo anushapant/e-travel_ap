@@ -71,7 +71,7 @@ def flights(request):
             else:
                 return render(request, 'flights_results.html')
         else:
-            # messages.error(request, "Please enter the number of adults/children")
+            messages.warning(request, "Please enter the number of adults/children.")
             return render(request, 'index.html')
 
 

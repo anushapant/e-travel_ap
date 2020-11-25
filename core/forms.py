@@ -21,7 +21,7 @@ MEAL = (
 )
 
 SPECIAL_SERVICES = (
-    ("exp_mother", "Expectant Mother"),
+    ("exp_mother", "Expecting Mother"),
     ("um", "Unaccompanied Minor(s) -$25  (Overall cost remains the same even for more than 1 minor) "),
 )
 
