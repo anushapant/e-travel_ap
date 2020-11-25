@@ -818,7 +818,9 @@ form label {
   text-align: center;
   margin-left: 3px;
 }
-
+.section_bg{
+   background:  #E8FEFB;
+}
 #gtco-features,
 #gtco-features-2,
 #gtco-products,
