@@ -33,6 +33,23 @@
 .icon-mail:before {
   content: "\e002";
 }
+
+.icon-connection:before {
+  content: "\e91b";
+}
+
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 0;
+  stroke: black;
+  fill: currentColor;
+}
+.icon-connection {
+  width: 1.25em;
+}
+
 .icon-toggle:before {
   content: "\e003";
 }

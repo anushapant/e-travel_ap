@@ -19,6 +19,17 @@ body {
   background: #fff;
 }
 
+.list-group {
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+}
+
+.feature-icon {
+  display: inline-block;
+  width: 1.5em;
+  margin-right: 4px;
+}
+
 .card{
   margin-bottom: 5em;
   outline: 1px shadow green;
