@@ -8,6 +8,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
+from datetime import datetime
 
 # Home page
 def home_v(request):
@@ -36,6 +37,7 @@ def special_assistance(request):
 # Flights search result page
 def flights(request):
     if request.method == 'GET':
+        current_date = timezone.now().date()
         from_place = request.GET.get('from-place')
         to_place = request.GET.get('to-place')
         start_date = request.GET.get('start_date')
@@ -43,6 +45,12 @@ def flights(request):
         children = request.GET.get('children')
         seat_class = request.GET.get('class')
         seats_required = int(adults) + int(children)
+
+        date = datetime.strptime(start_date, '%Y-%m-%d')
+        if current_date > date.date():
+            messages.warning(request, "Sorry, please search for a flight with a valid date.")
+            return render(request, 'index.html')
+
         if seats_required != 0:
 
             if from_place is not None and to_place is not None and start_date is not None:
