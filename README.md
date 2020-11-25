@@ -14,9 +14,18 @@ Steps:
 5. We have created a dummy user, with username:user and password:user1234. However, you can create a new account as well.
 
 # 
-All images in this website have been taken from https://unsplash.com/ .
+All images in this website have been taken from https://unsplash.com/.
+
 Information about destination cities has been taken from https://en.wikipedia.org/
-.
+
+The favicon used was taken from https://www.favicon-generator.org/search/---/Airplane.
+
+Though we used the above mentioned template, both the logo and the name, along with most of the pages are our own.
 
 In the process of making this project, we included the following templates:
-https://www.free-css.com/free-css-templates/page247/traveler 
+
+1. https://www.free-css.com/free-css-templates/page247/traveler 
+2. Skeletal framework : https://github.com/justdjango/django_project_boilerplate 
+3. Authentication template only : https://github.com/pennersr/django-allauth
+
+While making this website, we also referred to our previous project, Poshpixie.  

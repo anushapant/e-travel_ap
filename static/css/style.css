@@ -1056,7 +1056,7 @@ section, .container, .container-fluid {
 }
 
 #gtco-subscribe {
-  background: #0098EF;
+  background: #09C6AB;
 }
 #gtco-subscribe .form-control {
   background: transparent;
@@ -1089,14 +1089,21 @@ section, .container, .container-fluid {
 #gtco-subscribe .btn {
   height: 46px;
   border: none !important;
-  background: #09C6AB;
-  color: #fff;
+  background: white;
+  color: #09C6AB;
   font-size: 16px;
   text-transform: uppercase;
   font-weight: 400;
   padding-left: 50px;
   padding-right: 50px;
 }
+
+.gtco-subscribe_p {
+  color: white;
+  font-size: 16px;
+  font-weight: 400;
+}
+
 #gtco-subscribe .form-inline .form-group {
   width: 100% !important;
   margin-bottom: 10px;
@@ -1111,7 +1118,7 @@ section, .container, .container-fluid {
   color: #fff;
 }
 #gtco-subscribe .gtco-heading p {
-  color: rgba(255, 255, 255, 0.5);
+  color: white;
 }
 
 #gtco-footer .gtco-footer-links {
