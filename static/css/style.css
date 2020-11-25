@@ -29,6 +29,10 @@ body {
   margin-right: 12px;
 }
 
+.flight-padding{
+    padding-top: 3em;
+}
+
 .card{
   margin-bottom: 5em;
   outline: 1px shadow green;
