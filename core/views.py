@@ -99,9 +99,16 @@ def my_flights(request):
 def flight_details_V(request, slug):
     flight = get_object_or_404(FlightTicket, slug=slug)
     price = flight.first_class_price()
+    flight_price = flight.price
+    from_place = flight.start
+    to_place = flight.destination
+
+    cheaper = FlightTicket.objects.filter(start__icontains=from_place, destination__icontains=to_place, price__lt=flight_price)
+
     content = {
         'object': flight,
-        'first_class_price' :price
+        'first_class_price' :price,
+        'cheaper_flights': cheaper
     }
     return render(request, 'flight_details.html', content)
 

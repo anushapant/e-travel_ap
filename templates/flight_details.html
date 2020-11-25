@@ -33,6 +33,8 @@
             <h3 style="color: #09C6AB;" >🛫  {{object.start}} &emsp; ({{object.start_code}})</h3><h5>{{object.start_time}}</h5>
                 <h5>TO</h5>
             <h3 style="color: #09C6AB;">🛬   {{object.destination}} &emsp; ({{object.destination_code}}) </h3><h5>{{object.arrival_time}}</h5>
+
+
 			</div>
             <div class="col-lg-7">
                         <div class="checkout__order">
@@ -98,4 +100,31 @@
                     </div>
 		</div>
 	</div>
+     {% if cheaper_flights %}
+<div class="gtco-section">
+		<div class="gtco-container">
+     <hr>
+            <br>
+
+            <center><p>Travoyage ensures that you choose the best option for yourself.</p></center>
+                <h4>Cheaper flight(s) from {{object.start}} to {{object.destination}}:</h4>
+            {% for flight in cheaper_flights %}
+                    <a class="fh5co-card-item " href="{{flight.get_abs_url}}">
+
+						<div class="fh5co-text">
+
+							<h4 align="left">{{flight.flight_no}}, {{flight.airline}}</h4>
+							<img class="col-md-2" src="/media/{{ flight.image }}">
+							<p align="left">{{flight.date}}</p>
+							<p align="left">🛫  Departure: {{flight.start}}, {{flight.start_time}}  </p>
+                            <p align="left">🛬   To: {{flight.destination}}, {{flight.arrival_time}}</p>
+							<p align="left">Flight Duration: {{flight.duration_hr}} hours {{flight.duration_min}} minutes</p>
+							<p align="right"><span class="btn btn-primary" >Book</span></p>
+						</div>
+					</a>
+            {% endfor %}
+
+        </div>
+</div>
+         {% endif %}
 {% endblock %}
