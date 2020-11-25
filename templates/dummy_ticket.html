@@ -115,26 +115,9 @@
 										<div class="tab-content">
 											<div>
 												<center><h3>Congratulations! Your flight has been booked!</h3>
-                                                        <p>We hope you have an amazing trip!</p></center>
-
-													{% for flight in list %}
-															<div class="col-lg-12 col-md-4 col-sm-6 ">
-
-															<div class="booking">
-
-																<img class="col-md-1" src="/media/{{ flight.ticket.image }}">
-
-																<h4 align="left">{{flight.ticket.flight_no}}, {{flight.ticket.airline}}</h4>
-																<h4 align="left">{{flight.ticket.date}}</h4>
-																<p class="alignleft">Departure: {{flight.ticket.start}}, {{flight.ticket.start_time}}  </p>
-                            									<p class="alignright"> To: {{flight.ticket.destination}}, {{flight.ticket.arrival_time}}</p>
-																<div style="clear: both;"></div>
-															</div>
-															</div>
-														<hr>
-													{% endfor %}
-
-												<center><a href="/"><span class="btn btn-primary">Done!</span></a></center>
+                                                        <p>We hope you have an amazing trip!</p>
+													<hr>
+												<a href="/"><span class="btn btn-primary">Done!</span></a></center>
 											</div>
 										</div>
 

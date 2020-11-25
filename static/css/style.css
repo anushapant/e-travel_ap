@@ -1936,6 +1936,33 @@ section, .container, .container-fluid {
   text-decoration: none !important;
 }
 
+.alignleft {
+	float: left;
+}
+.alignright {
+	float: right;
+}
+
+.booking {
+ border-top: 1px solid #09C6AB;
+ padding-top: 10px;
+ border-bottom 1px solid black;
+}
+
+.booking h4{
+    color: black;
+   font-size: 16px;
+    font-weight: 400;
+
+
+}
+
+.booking p{
+    color: #09C6AB;
+   font-size: 18px;
+    font-weight: 400;
+}
+
 @media screen and (max-width: 768px) {
   .macbook-wrap img {
     max-width: 100%;

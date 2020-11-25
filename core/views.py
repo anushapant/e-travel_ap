@@ -115,7 +115,18 @@ def destination_details_V(request, slug):
 
 # Booking confirmed page, final step
 def booking_confirmed(request):
-    return render(request, "booking_confirmed.html")
+    list = Flight_Booking_List.objects.filter(user=request.user, booked=True)
+    context = {
+        'list': list
+    }
+    return render(request, "booking_confirmed.html", context)
+
+def ticket(request):
+    list = Flight_Booking_List.objects.filter(user=request.user, booked=True)
+    context ={
+        'list': list
+    }
+    return render(request, "dummy_ticket.html", context)
 
 # adding flights to the 'cart'
 @login_required
