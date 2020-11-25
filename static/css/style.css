@@ -864,6 +864,10 @@ form label {
   border-bottom: 1px solid #e6e6e6;
 }
 
+#gtco-footer {
+    background: #E8FEFB;
+}
+
 #gtco-features {
   background: #09C6AB;
 }
