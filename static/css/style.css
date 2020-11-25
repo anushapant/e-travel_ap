@@ -174,7 +174,7 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 
 #message {
-border: 2px solid #c295d8;
+border: 2px solid #e7e7e7;
 }
 
 @media screen and (max-width: 768px) {
