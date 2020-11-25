@@ -8,6 +8,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
+from datetime import datetime
 
 # Home page
 def home_v(request):
@@ -36,6 +37,7 @@ def special_assistance(request):
 # Flights search result page
 def flights(request):
     if request.method == 'GET':
+        current_date = timezone.now().date()
         from_place = request.GET.get('from-place')
         to_place = request.GET.get('to-place')
         start_date = request.GET.get('start_date')
@@ -43,6 +45,12 @@ def flights(request):
         children = request.GET.get('children')
         seat_class = request.GET.get('class')
         seats_required = int(adults) + int(children)
+
+        date = datetime.strptime(start_date, '%Y-%m-%d')
+        if current_date > date.date():
+            messages.warning(request, "Sorry, please search for a flight with a valid date.")
+            return render(request, 'index.html')
+
         if seats_required != 0:
 
             if from_place is not None and to_place is not None and start_date is not None:
@@ -99,9 +107,18 @@ def my_flights(request):
 def flight_details_V(request, slug):
     flight = get_object_or_404(FlightTicket, slug=slug)
     price = flight.first_class_price()
+    flight_price = flight.price
+    from_place = flight.start
+    to_place = flight.destination
+
+    # To ensure a flight with a date before today/when the user clicks here does not show up in the cheaper flights section
+    current_date = timezone.now().date()
+    cheaper = FlightTicket.objects.filter(start__icontains=from_place, destination__icontains=to_place, price__lt=flight_price, date__gte= current_date )
+
     content = {
         'object': flight,
-        'first_class_price' :price
+        'first_class_price' :price,
+        'cheaper_flights': cheaper
     }
     return render(request, 'flight_details.html', content)
 
